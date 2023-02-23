@@ -1,0 +1,101 @@
+/*! custom.css v1.0 */
+
+/* ==========================================================================
+
+   Custom CSS Stylesheet. This is where you should add your own styles!
+
+   ========================================================================== */
+
+/*
+* Simple style overrides or custom adds
+*/
+
+.some-css-selector {font-size:13px;}
+
+
+/* ==========================================================================
+   ** Responsive styles custom rules
+   * These rules are ready to be used for either overrides
+   * or just your own custom rules.
+   ========================================================================== */
+
+@media only screen and (min-width : 1921px){
+
+}
+
+@media only screen and (max-width : 1440px){
+
+}
+
+@media only screen and (min-width : 1200px) and (max-width : 1440px){
+     
+}
+
+@media only screen and (min-width : 1440px) and (max-width : 1921){
+   
+    }
+@media only screen and (min-width : 1200px){
+
+}
+
+@media only screen and (max-width: 1199px){
+
+
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+
+}
+
+@media only screen and (min-width: 992px){
+
+
+}
+
+@media only screen and (max-width: 991px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (max-width : 480px) {
+
+}
+
+@media only screen and (max-width : 320px) {
+
+}
+.admin-logo{
+   max-width:20% ;
+   height: auto;
+   margin:auto;
+}
+
+ul#file-main-menu {
+   margin-left: -180%;
+}
+
+h2.file-server-icon {
+   margin-left: 6%;
+   color: palevioletred;
+   font-weight: bold;
+}
+
+
+span.relative.inline-flex.items-center.px-4.py-2.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.cursor-default.leading-5.rounded-md {
+   display: none !important;
+}
+
+a.relative.inline-flex.items-center.px-4.py-2.ml-3.text-sm.font-medium.text-gray-700.bg-white.border.border-gray-300.leading-5.rounded-md.hover\:text-gray-500.focus\:outline-none.focus\:ring.ring-gray-300.focus\:border-blue-300.active\:bg-gray-100.active\:text-gray-700.transition.ease-in-out.duration-150 {
+   display: none !important;
+}
