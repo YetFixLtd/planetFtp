@@ -1358,7 +1358,7 @@
 			dots: true,
 			margin: 10,
 			nav: true,
-			navText: ["<img src='./images/icons/arrow-left-white.svg' alt='arrow'>", "<img src='./images/icons/arrow-right-white.svg' alt='arrow'>"],
+			navText: ["<img src='./newFrontEnd/arrow-left-white.svg' alt='arrow'>", "<img src='./newFrontEnd/arrow-right-white.svg' alt='arrow'>"],
 			responsive: {
 				540: {
 					items: 3,
@@ -1375,21 +1375,21 @@
 			items: 1,
 			dots: true,
 			nav: true,
-			navText: ["<img src='./images/icons/arrow-left.svg' alt='arrow'>", "<img src='./images/icons/arrow-right.svg' alt='arrow'>"]
+			navText: ["<img src='./newFrontEnd/arrow-left.svg' alt='arrow'>", "<img src='./newFrontEnd/arrow-right.svg' alt='arrow'>"]
 		});
 		this.postSlider = $('#post-slider-2').owlCarousel({
 			loop: true,
 			items: 1,
 			dots: true,
 			nav: true,
-			navText: ["<img src='./images/icons/arrow-left.svg' alt='arrow'>", "<img src='./images/icons/arrow-right.svg' alt='arrow'>"]
+			navText: ["<img src='./newFrontEnd/arrow-left.svg' alt='arrow'>", "<img src='./newFrontEnd/arrow-right.svg' alt='arrow'>"]
 		});
 		this.blogpostSlider = $('.blogpost-slider').owlCarousel({
 			loop: true,
 			items: 1,
 			dots: false,
 			nav: true,
-			navText: ["<img src='./images/icons/arrow-left.svg' alt='arrow'>", "<img src='./images/icons/arrow-right.svg' alt='arrow'>"],
+			navText: ["<img src='./newFrontEnd/arrow-left.svg' alt='arrow'>", "<img src='./newFrontEnd/arrow-right.svg' alt='arrow'>"],
 			thumbs: true,
 			thumbsPrerendered: true
 		});
@@ -1691,18 +1691,18 @@ function autocomplete(inp) {
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value, $ = jQuery;
-      /*close any already open lists of autocompleted values*/ 
-      //if(val.length > 1){   
+      /*close any already open lists of autocompleted values*/
+      //if(val.length > 1){
           $.ajax({
                 type: "POST",
                 async: false,
                 url: "command.php",
                 data: "cSearch="+val,
                 success: function(data){
-                    arr = JSON.parse(data);	
+                    arr = JSON.parse(data);
                 }
           });
-          
+
           closeAllLists();
           if (!val) { return false;}
           currentFocus = -1;
@@ -1721,11 +1721,11 @@ function autocomplete(inp) {
               /*make the matching letters bold:*/
               var str = arr[i].name;
               var fnd = str.match(new RegExp(val, 'ig'));
-              
+
               fnd.forEach(function(elt) {
                 str = str.replace(new RegExp(elt, 'g'), '<b>' + elt + '</b>')
               });
-              
+
               b.innerHTML = "<table><tr><td><img style='height: 50px; width: auto;' src='files/"+arr[i].image+"'/></td><td style='padding-left: 5px;'>"+str+"</td></tr></table>"; //.replace(new RegExp(val, 'ig'), '<b>' + val + '</b>');
               //b.innerHTML = "<b>" + arr[i].name.substr(0, val.length) + "</b>";
               //b.innerHTML += arr[i].name.substr(val.length);
@@ -1736,7 +1736,7 @@ function autocomplete(inp) {
               b.addEventListener("click", function(e) {
                   /*insert the value for the autocomplete text field:*/
                   //inp.value = this.getElementsByTagName("input")[0].value;
-                  
+
                   sarr = JSON.parse(this.getElementsByTagName("input")[0].value);
                   if(sarr.type == "1"){
                         self.location = "player.php?play="+sarr.id;
