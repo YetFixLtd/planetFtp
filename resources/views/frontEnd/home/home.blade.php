@@ -15,7 +15,7 @@
                     <div class="content news-gallery">
 
 
-                        <div class="date-bar"></div>
+                        {{-- <div class="date-bar"></div> --}}
 
 
                         @php
