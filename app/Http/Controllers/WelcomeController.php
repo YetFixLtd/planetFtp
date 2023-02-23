@@ -235,10 +235,10 @@ class WelcomeController extends Controller
             ->join('categories', 'products.categoryId', '=', 'categories.id')
             ->join('sub_categories', 'products.SubCategoryId', '=', 'sub_categories.id')
             ->select('products.*', 'categories.categoryTitle', 'sub_categories.subCategoryTitle')
-            ->where('products.SubCategoryId', '=', $id)
-            ->get();
+            ->where('products.SubCategoryId', '=', $id)->paginate(100);
+            // ->get();
 
-        return view('front.moviePage', compact('children','sub_category','all_sub_categories'));
+        return view('frontEnd.menuPage.page', compact('children','sub_category','all_sub_categories'));
 
     }
     public function subCategoryYear($id,$year)
