@@ -36,6 +36,33 @@
 <script src="{{ asset('newFrontEnd') }}/js/app3f56.js?v=11" type="text/javascript"></script>
 
 <script type="text/javascript">
+    $(function() {
+        // $('#txtSearch').on('keyup', function(){
+
+        $('#txtSearch').keyup(function() {
+
+            var text = $('#txtSearch').val();
+
+            $.ajax({
+                type: "GET",
+                url: '/search-results',
+                data: {
+                    text: text
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#result').html(data);
+                }
+            });
+        });
+    });
+
+
+
+
+
+
+
     var EW_IS_MOBILE = false,
         $ad;
 

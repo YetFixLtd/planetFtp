@@ -50,7 +50,7 @@
     <!-- main menu -->
     <div id="main-menu" class="main-nav zn_mega_wrapper " style="margin-right:3%;margin-top:5px;">
 
-        <ul id="menu-main-menu" class="main-menu zn_mega_menu"> 
+        <ul id="menu-main-menu" class="main-menu zn_mega_menu">
 
         <li class="menu-item-has-children" style=""><a href="{{ url('/') }}">Home</a></li>
 
@@ -61,8 +61,8 @@
                 <a
                     href="{{ url('/') }}">{{ $category->categoryTitle }}
                 </a>
-                
-              
+
+
                 <ul class="sub-menu clearfix">
                     @php
                     // $children=\App\Models\SubCategory::where('categoryId',$category->id)->get();
@@ -84,7 +84,7 @@
                 <a
                     href="{{ url('/') }}">{{ $category->categoryTitle }}
                 </a>
-             
+
                 <ul class="sub-menu clearfix">
                     @php
                     // $children=\App\Models\SubCategory::where('categoryId',$category->id)->get();
@@ -106,7 +106,7 @@
                 <a
                     href="{{ url('/') }}">{{ $category->categoryTitle }}
                 </a>
-             
+
                 <ul class="sub-menu clearfix">
                     @php
                     // $children=\App\Models\SubCategory::where('categoryId',$category->id)->get();
@@ -129,7 +129,7 @@
                 <a
                     href="{{ url('/') }}">{{ $category->categoryTitle }}
                 </a>
-             
+
                 <ul class="sub-menu clearfix">
                     @php
                     // $children=\App\Models\SubCategory::where('categoryId',$category->id)->get();
@@ -146,20 +146,20 @@
             </li>
 
             <li class="menu-item-has-children" style=""><a href="#">Partner-Ftp</a>
-                
+
                 <ul class="sub-menu clearfix">
                     <li><a href="http://103.110.162.218/" target="_blank">Jellyfin-Server</a></li>
                     <li><a href="http://circleftp.net/" target="_blank">Circle-FTP</a></li>
                     <li><a href="http://10.16.100.244/" target="_blank">ICC-FTP</a></li>
                 </ul>
-                
+
             </li>
 
             <li class="menu-item-has-children" style=""><a href="#" target="_blank">LIVE TV</a>
 
             </li>
 
-     
+
 
         </ul>
     </div>
