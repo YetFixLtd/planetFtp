@@ -39,12 +39,12 @@ Route::get('/movie/{id}', [
     'as' => 'movie'
 ]);
 
- /* Sub Category Info api*/
- Route::get('/fetch-tv-series-by-sub-category-id/{sub_category_id}', 'ApiController@fetchTvSeries');
- Route::get('/fetch-season-by-tv-series-id/{tv_series_id}', 'ApiController@fetchSeason');
+/* Sub Category Info api*/
+Route::get('/fetch-tv-series-by-sub-category-id/{sub_category_id}', 'ApiController@fetchTvSeries');
+Route::get('/fetch-season-by-tv-series-id/{tv_series_id}', 'ApiController@fetchSeason');
 
- Route::get('/fetch-sub-category-by-category-id/{category_id}', 'ApiController@fetchSubCategory');
- //Route::get('/fetch-movies-by-subcategory-id/{movies_id}', 'ApiController@fetchSeason');
+Route::get('/fetch-sub-category-by-category-id/{category_id}', 'ApiController@fetchSubCategory');
+//Route::get('/fetch-movies-by-subcategory-id/{movies_id}', 'ApiController@fetchSeason');
 
 Route::get('/movie-episode/{id}/{type}', 'WelcomeController@movieEpisode');
 Route::get('/others/{id}', 'WelcomeController@others_details');
@@ -177,8 +177,8 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => '/catDelete'
     ]);
 
-   
-     /* Sub Category Info */
+
+    /* Sub Category Info */
     Route::get('/sub-catagory-add', [
         'uses' => 'SubCategoryController@create',
         'as' => '/subCatAdd'
@@ -280,8 +280,8 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => '/tvSeriesDelete'
     ]);
 
-      /*  Season Info*/
-      Route::get('/season-items', [
+    /*  Season Info*/
+    Route::get('/season-items', [
         'uses' => 'SeasonController@create',
         'as' => '/seasonAdd'
     ]);
@@ -315,8 +315,8 @@ Route::group(['middleware' => ['auth']], function () {
     ]);
 
 
-     /*  Episode Info*/
-     Route::get('/episode-items', [
+    /*  Episode Info*/
+    Route::get('/episode-items', [
         'uses' => 'EpisodeController@create',
         'as' => '/episodeAdd'
     ]);
@@ -377,5 +377,5 @@ Route::group(['middleware' => ['auth']], function () {
     ]);
 });
 
-Route::get('contact',[ContactController::class, 'index']);
-Route::post('send',[ContactController::class, 'send'])->name('email.send');
+Route::get('contact', [ContactController::class, 'index']);
+Route::post('send', [ContactController::class, 'send'])->name('email.send');

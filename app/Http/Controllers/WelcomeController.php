@@ -111,9 +111,9 @@ class WelcomeController extends Controller
 
 
         $relatedProduct = Product::where('SubCategoryId', $children->SubCategoryId)->limit(10)->get();
-        // dd($relatedProduct);
-
-        return view('front.movieDetails', compact('children', 'relatedProduct'));
+        //dd($relatedProduct);
+        // dd($children);
+        return view('frontEnd.home.movieDetails', compact('children', 'relatedProduct'));
     }
     public function episode_details($id)
     {
@@ -227,8 +227,8 @@ class WelcomeController extends Controller
     public function subCatProductView($id)
     {
 
-        $sub_category = DB::table('sub_categories')->where('id',$id)->first();
-        $all_sub_categories = DB::table('sub_categories')->where('categoryId',$sub_category->categoryId)->get();
+        $sub_category = DB::table('sub_categories')->where('id', $id)->first();
+        $all_sub_categories = DB::table('sub_categories')->where('categoryId', $sub_category->categoryId)->get();
 
 
         $children = DB::table('products')
@@ -237,15 +237,14 @@ class WelcomeController extends Controller
             ->select('products.*', 'categories.categoryTitle', 'sub_categories.subCategoryTitle')
             ->where('products.SubCategoryId', '=', $id)
             ->get();
-
-        return view('front.moviePage', compact('children','sub_category','all_sub_categories'));
-
+        //dd($sub_category);
+        return view('frontEnd.home.subcategoryBasedMovie', compact('children', 'sub_category', 'all_sub_categories'));
     }
-    public function subCategoryYear($id,$year)
+    public function subCategoryYear($id, $year)
     {
 
-        $sub_category = DB::table('sub_categories')->where('id',$id)->first();
-        $all_sub_categories = DB::table('sub_categories')->where('categoryId',$sub_category->categoryId)->get();
+        $sub_category = DB::table('sub_categories')->where('id', $id)->first();
+        $all_sub_categories = DB::table('sub_categories')->where('categoryId', $sub_category->categoryId)->get();
 
 
         $children = DB::table('products')
@@ -256,8 +255,7 @@ class WelcomeController extends Controller
             ->where('products.year', '=', $year)
             ->get();
 
-        return view('front.subcat_movies_by_year', compact('children','sub_category','all_sub_categories'));
-
+        return view('front.subcat_movies_by_year', compact('children', 'sub_category', 'all_sub_categories'));
     }
 
     public function subCatTvView($id)

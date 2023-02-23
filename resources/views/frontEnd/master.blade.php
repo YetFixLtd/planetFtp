@@ -34,7 +34,7 @@
 
 
         <main>
-            @include('frontEnd.includes.slider')
+
 
             @yield('main-content')
 
@@ -90,7 +90,7 @@
             </div>
         </div> --}}
 
-       
+
     </div>
 
     @include('frontEnd.includes.footer')
