@@ -42,7 +42,7 @@
         </main>
 
 
-        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        {{-- <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="pswp__bg"></div>
             <div class="pswp__scroll-wrap">
                 <div class="pswp__container">
@@ -88,10 +88,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        @include('frontEnd.includes.footer')
+       
     </div>
+
+    @include('frontEnd.includes.footer')
 
     <div class="overlay-bg"></div>
 

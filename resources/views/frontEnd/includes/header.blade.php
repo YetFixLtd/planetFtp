@@ -1,11 +1,11 @@
 <header class="style1">
     <div class="top-bar hidden-sm hidden-xs">
-        <a class="logotype" href="index.html">
+        <a class="logotype" href="{{ url('/') }}">
             <div class="logo"><img src="#" alt="logotype" /></div>
             <div class="text"><span style="white-space: nowrap;">FTP SERVER</span></div>
         </a>
     </div>
-    <a class="logotype mobile-logotype" href="index.html">
+    <a class="logotype mobile-logotype" href="{{ url('/') }}">
         <div class="logo"><img src="#" alt="logotype" /></div>
         <div class="text"><span style="white-space: nowrap;">FTP SERVER</span></div>
     </a>
@@ -18,7 +18,7 @@
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
             <li class="dropdown">
-                <a href="livetv.html"><span
+                <a href="{{ url('/') }}"><span
                         style="font-weight: 900; border: 2px solid #800040; border-radius: 5px; padding: 7px;">LIVE
                         TV</span></a>
             </li>
