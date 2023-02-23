@@ -29,9 +29,17 @@
         <div class="swiperight">
         </div>
 
+
         @include('frontEnd.includes.header')
 
-        @yield('main-content')
+
+        <main>
+            @include('frontEnd.includes.slider')
+
+            @yield('main-content')
+
+
+        </main>
 
 
         <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
