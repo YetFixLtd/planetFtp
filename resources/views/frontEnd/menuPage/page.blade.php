@@ -11,6 +11,10 @@
         <div class="news-container">
             <h3 class="ml-10">{{ $sub_category->subCategoryTitle }}</h3>
             <hr />
+            <div class="col-lg-5">
+                {{ $children->onEachSide(1)->links() }}
+            </div>
+            <hr/>
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div class="content news-gallery">
