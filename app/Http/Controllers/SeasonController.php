@@ -66,7 +66,7 @@ class SeasonController extends Controller
         ->join('tv_series', 'seasons.tvSeriesId', '=', 'tv_series.id')
         ->select('seasons.*','tv_series.tvSeriesTitle')
         ->get();
-        return view('admin.season.manageseason', ['season' => $season]);
+        return view('admin.season.manageSeason', ['season' => $season]);
         //        return view('admin.category.table');
     }
 
