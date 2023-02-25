@@ -48,12 +48,12 @@
                         </tfoot>
                         <tbody>
 
-                            @foreach($episode as $episode)
+                            @foreach($episodes as $episode)
                             {{-- {{ dd($episode) }} --}}
                             <tr>
                                 <td>{{$episode->id}}</td>
-                                <td>{{$episode->tvSeriesId}}</td>
-                                <td>{{$episode->seasonId}}</td>
+                                <td>{{$episode->tvSeriesTitle}}</td>
+                                <td>{{$episode->seasonTitle}}</td>
                                 <td>{{$episode->episodeTitle}}</td>
                                 <td>{{$episode->episodeDescription}}</td>
                                 <td>{{$episode->episodeFile}}</td>
@@ -67,8 +67,8 @@
                                     </video>
                                 </th>
                                 {{-- <th>
-                            <iframe width="727" height="409" src="{{ $episode->episodeUrl }}" frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            <iframe width="727" height="409" src="{{ $episode->episodeUrl }}" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                             </iframe>
                         </th> --}}
