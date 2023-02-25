@@ -29,7 +29,7 @@ class SeasonController extends Controller
     }
 
     public function create()
-    {   
+    {
         $subCategories = SubCategory::where('publicationStatus', 1)->where('type','tv_series')->get();
         $tvSeries = TvSeries::where('publicationStatus', 1)->get();
         return view('admin.season.createSeason', compact('subCategories','tvSeries'));
@@ -54,7 +54,7 @@ class SeasonController extends Controller
             $fileUrl = $uploadPath . $fileName;
         $season->seasonFile =   $fileUrl;
         $season->publicationStatus = $request->publicationStatus;
-      
+
         $season->save();
         return redirect()->route('/seasonAdd')->with('message', 'Season info saved successfully');
     }
@@ -63,8 +63,8 @@ class SeasonController extends Controller
     public function show()
     {
         $season = DB::table('seasons')
-        ->join('tv_Series', 'seasons.tvSeriesId', '=', 'tv_Series.id')
-        ->select('seasons.*','tv_Series.tvSeriesTitle')
+        ->join('tv_series', 'seasons.tvSeriesId', '=', 'tv_series.id')
+        ->select('seasons.*','tv_series.tvSeriesTitle')
         ->get();
         return view('admin.season.manageseason', ['season' => $season]);
         //        return view('admin.category.table');
@@ -78,7 +78,7 @@ class SeasonController extends Controller
             'season' => $season,
             'tvSeries' => $tvSeries,
         ]);
-        
+
     }
 
     //    public function unPublishedCategoryInfo($id, $a){

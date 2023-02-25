@@ -30,7 +30,7 @@ class TvSeriesController extends Controller
     }
 
     public function create()
-    {   
+    {
         $categories = Category::where('publicationStatus', 1)->get();
         $subCategories = SubCategory::where('publicationStatus', 1)->where('type','tv_series')->get();
         return view('admin.tvSeries.createTvseries', ['categories' => $categories, 'subCategories' => $subCategories]);
@@ -58,15 +58,15 @@ class TvSeriesController extends Controller
         $tvSeries->publicationStatus = $request->publicationStatus;
         //dd($tvSeries);
         $tvSeries->save();
-       
+
         return redirect()->route('/tvSeriesAdd')->with('message', 'TV Series info saved successfully');
     }
 
     public function show()
     {
-        $tvSeriess = DB::table('tv_Series')
-        ->join('sub_categories', 'tv_Series.SubCategoryId', '=', 'sub_categories.id')
-        ->select('tv_Series.*','sub_categories.subCategoryTitle')
+        $tvSeriess = DB::table('tv_series')
+        ->join('sub_categories', 'tv_series.SubCategoryId', '=', 'sub_categories.id')
+        ->select('tv_series.*','sub_categories.subCategoryTitle')
         ->get();
         return view('admin.tvSeries.manageTvseries', ['tvSeriess' => $tvSeriess]);
         //        return view('admin.category.table');
@@ -80,7 +80,7 @@ class TvSeriesController extends Controller
             'tvSeries' => $tvSeries,
             'subCategories' => $subCategories,
         ]);
-        
+
     }
 
     //    public function unPublishedCategoryInfo($id, $a){
@@ -109,9 +109,9 @@ class TvSeriesController extends Controller
         $tvSeries = TvSeries::find($request->id);
         $tvSeries->SubCategoryId = $request->SubCategoryId;
         $tvSeries->tvSeriesTitle = $request->tvSeriesTitle;
-        
+
         $tvSeries->tvSeriesFile = $fileUrl;
-      
+
         $tvSeries->publicationStatus = $request->publicationStatus;
         $tvSeries->save();
     }
