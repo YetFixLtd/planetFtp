@@ -75,12 +75,12 @@ class EpisodeController extends Controller
 
     public function show()
     {
-        $episode = DB::table('episodes')
+        $episodes = DB::table('episodes')
             ->join('tv_series', 'episodes.tvSeriesId', '=', 'tv_series.id')
             ->join('seasons', 'episodes.seasonId', '=', 'seasons.id')
             ->select('episodes.*', 'tv_series.tvSeriesTitle', 'seasons.seasonTitle')
             ->get();
-        return view('admin.episode.manageEpisode', ['episode' => $episode,]);
+        return view('admin.episode.manageEpisode', ['episodes' => $episodes,]);
     }
 
     public function unpublishedepisodeInfo($id)
