@@ -5,7 +5,7 @@
 @section('main-content')
 
 
-    <body class="theme-color-purple" style="background-color: black;">
+    <section class="theme-color-purple" style="background-color: black;">
         <div class="main-wrapper">
             <!--  sidebar-opened -->
             <div class="swipeleft">
@@ -196,6 +196,6 @@
 
             </div>
 
-    </body>
+            </body>
 
-@endsection
+        @endsection

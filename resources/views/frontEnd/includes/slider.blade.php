@@ -23,5 +23,14 @@
         @empty
         @endforelse
 
+
+
+        {{-- <div class="owl-nav">
+            <div class="owl-prev"><img src="{{ asset('newFrontEnd/arrow-left-white.svg') }}" alt="arrow"></div>
+            <div class="owl-next"><img src="{{asset('newFrontEnd/arrow-right-white.svg')}}" alt="arrow"></div>
+        </div> --}}
+
+
+
     </div>
 </div>

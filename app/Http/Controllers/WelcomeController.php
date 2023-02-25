@@ -235,10 +235,10 @@ class WelcomeController extends Controller
             ->join('categories', 'products.categoryId', '=', 'categories.id')
             ->join('sub_categories', 'products.SubCategoryId', '=', 'sub_categories.id')
             ->select('products.*', 'categories.categoryTitle', 'sub_categories.subCategoryTitle')
-            ->where('products.SubCategoryId', '=', $id)
-            ->get();
-        //dd($sub_category);
-        return view('frontEnd.home.subcategoryBasedMovie', compact('children', 'sub_category', 'all_sub_categories'));
+            ->where('products.SubCategoryId', '=', $id)->paginate(100);
+        // ->get();
+
+        return view('frontEnd.menuPage.page', compact('children', 'sub_category', 'all_sub_categories'));
     }
     public function subCategoryYear($id, $year)
     {
@@ -270,17 +270,37 @@ class WelcomeController extends Controller
             ->where('tv_series.SubCategoryId', '=', $id)
             //->where('products.categoryId', 1)
             ->get();
-        return view('front.tvPage', ['children' => $children, 'children2' => $children2]);
+        //dd($children);
+        //dd($children2);
+        return view('frontEnd.home.TvSeriesCollection', ['children' => $children, 'children2' => $children2]);
     }
 
     public function subCatTvSeason($id)
     {
         // dd($id);
+
+        $poster = DB::table('tv_series')
+            ->select('tv_series.*')
+            ->where('tv_series.id', '=', $id)
+            //->where('products.categoryId', 1)
+            ->get();
+
         $children = DB::table('seasons')
             ->select('seasons.*')
             ->where('seasons.tvSeriesId', '=', $id)
             ->get();
-        return view('front.tvSeason', ['children' => $children]);
+
+        $episodes = DB::table('episodes')
+            ->select('episodes.*')
+            ->where('episodes.seasonId', '=', $id)
+            ->get();
+        //dd($children);
+        //dd($episodes);
+        //dd($poster);
+
+        $tvSeriesData = DB::table('tv_series')->join('sub_categories', 'sub_categories.id', '=', $id)->join('seasons', 'tv_series.id', '=', 'seasons.tvSeriesId')->join('episodes', 'episodes.SubCategoryId', '=', '');
+
+        return view('frontEnd.home.SeasonCollection', ['children' => $children, 'episodes' => $episodes, 'poster' => $poster]);
     }
 
     public function subCatTvEpisode($id)

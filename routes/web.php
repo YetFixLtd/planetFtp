@@ -379,3 +379,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('contact', [ContactController::class, 'index']);
 Route::post('send', [ContactController::class, 'send'])->name('email.send');
+
+
+
+// Route::get('/tvseries', function () {
+//     return view('frontEnd.home.TvSeriesCollection');
+// });
+// Route::get('/season', function () {
+//     return view('frontEnd.home.SeasonCollection');
+// });
