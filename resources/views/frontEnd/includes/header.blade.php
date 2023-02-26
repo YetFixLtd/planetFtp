@@ -105,7 +105,7 @@
             @endphp
             <li class="dropdown">
                 <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">Others<i class="fa fa-chevron-down"></i></a>
+                    aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i class="fa fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
                     @php
                         $subCategory = \App\Models\SubCategory::where('categoryId', 5)->get();
