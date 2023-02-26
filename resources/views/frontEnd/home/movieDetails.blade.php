@@ -112,7 +112,7 @@
                     <div class="news-container">
                         <ul class="news-bar nav nav-tabs" style="background-color: #E2E2E2;">
                             <li class="active" style=""><a
-                                    style="font-size: 26px; margin-left: 65px;background-color: transparent;">RELATED</a>
+                                    style="font-size: 26px; margin-left: 65px;background-color: transparent;">Related</a>
                             </li>
                         </ul>
                         <div class="tab-content news-content clearfix">
@@ -120,15 +120,16 @@
                                 <div class="content news-gallery">
                                     <div class="date-bar"></div>
 
+
                                     @foreach ($relatedProduct as $reletedPro)
-                                        <div class="post post-height hover-img-scale wow fadeInUp" style="height: 450px;"
+                                        <div class="post post-height hover-img-scale wow fadeInUp " style="height: 225px;"
                                             data-rating="5" data-wow-duration="0.7s" data-wow-offset="0">
                                             <div class="post-wrapper">
                                                 <a class="image" onclick="UpdateHits('23613','visit')"
                                                     href="{{ route('movie', ['id' => $reletedPro->id]) }}"><img
                                                         src="{{ asset('/') }}{{ $reletedPro->productFile }}"
                                                         alt="{{ $reletedPro->productTitle }}"
-                                                        style="width:100%; height: auto;" /></a>
+                                                        style="width: 100%; height: 100%;" /></a>
                                                 <div class="block">
 
                                                     <div class="title">

@@ -14,10 +14,6 @@
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div class="content news-gallery">
 
-
-                        {{-- <div class="date-bar"></div> --}}
-
-
                         @php
                             $products = DB::table('products')
                                 ->select('products.*')
@@ -31,12 +27,9 @@
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
                                             src="{{ asset($product->productFile) }}" alt="Rifle Ganj"
-                                            style="width: 100%; height: 100%;" /></a>
+                                            style="width: 300px; height: 450px; margin: auto;" /></a>
                                     <div class="block">
-                                        {{-- <div class="day-views">
-                                        <span class="day">34 minutes ago</span>
-                                        <span class="view">52 Hits</span>
-                                    </div> --}}
+
                                         <div class="title">{{ $product->productTitle }}</div>
                                     </div>
                                 </div>
@@ -45,9 +38,9 @@
                         @empty
                         @endforelse
 
+                        </>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 @endsection

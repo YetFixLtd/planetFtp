@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\WelcomeController;
 
 Route::get('/', 'WelcomeController@index');
 Route::get('/subCatmovie/{id}', [
@@ -382,9 +383,4 @@ Route::post('send', [ContactController::class, 'send'])->name('email.send');
 
 
 
-// Route::get('/tvseries', function () {
-//     return view('frontEnd.home.TvSeriesCollection');
-// });
-// Route::get('/season', function () {
-//     return view('frontEnd.home.SeasonCollection');
-// });
+Route::get('/others', [WelcomeController::class, 'others_details']);
