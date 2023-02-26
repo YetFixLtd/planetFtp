@@ -19,7 +19,7 @@
                                 ->select('products.*')
                                 ->orderBy('products.id', 'DESC')
                                 ->where('categoryId', 1)
-                                ->paginate(8);
+                                ->paginate(10);
                         @endphp
                         @forelse($products as $product)
                             <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
