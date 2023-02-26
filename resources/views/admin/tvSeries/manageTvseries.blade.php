@@ -42,7 +42,10 @@
                                 <td>{{$tvSeries->id}}</td>
                                 <td>{{$tvSeries->subCategoryTitle}}</td>
                                 <td>{{$tvSeries->tvSeriesTitle}}</td>
-                                <td>{{$tvSeries->tvSeriesFile}}</td>
+                                <td>
+                                    {{-- {{$tvSeries->tvSeriesFile}} --}}
+                                    <img src="{{asset($tvSeries->tvSeriesFile) }}" alt="{{$tvSeries->id}}" height="100" width="100">
+                                </td>
                                 <td>{{$tvSeries->publicationStatus == 1 ? 'Published' : 'Unpublished'}}</td>
                                 <td>
 {{--                                    <a href="{{url('/catagory-items4/'.$category->id)}}" class="btn btn-success">--}}
