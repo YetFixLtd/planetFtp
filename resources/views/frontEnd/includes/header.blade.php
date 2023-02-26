@@ -17,11 +17,11 @@
     </button>
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-            <li class="dropdown">
+            {{-- <li class="dropdown">
                 <a href="{{ url('/') }}"><span
                         style="font-weight: 900; border: 2px solid #800040; border-radius: 5px; padding: 7px;">LIVE
                         TV</span></a>
-            </li>
+            </li> --}}
             <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
                     aria-expanded="false">Movies<i class="fa fa-chevron-down"></i></a>
