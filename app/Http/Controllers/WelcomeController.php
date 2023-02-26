@@ -149,7 +149,7 @@ class WelcomeController extends Controller
 
 
         $relatedProduct = Product::where('SubCategoryId', $children->SubCategoryId)->limit(10)->get();
-        // dd($relatedProduct);
+        dd($relatedProduct);
 
         return view('front.includes.otherDetails', compact('children', 'relatedProduct'));
     }
@@ -182,13 +182,6 @@ class WelcomeController extends Controller
             ->get();
         return view('front.includes.others', ['children' => $children, 'children2' => $children2]);
     }
-
-
-
-
-
-
-
 
 
 
