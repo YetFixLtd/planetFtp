@@ -56,7 +56,10 @@
                                 <td>{{$episode->seasonTitle}}</td>
                                 <td>{{$episode->episodeTitle}}</td>
                                 <td>{{$episode->episodeDescription}}</td>
-                                <td>{{$episode->episodeFile}}</td>
+                                <td>
+                                    {{-- {{$episode->episodeFile}} --}}
+                                    <img src="{{asset($episode->episodeFile) }}" alt="{{$episode->id}}" height="100" width="100">
+                                </td>
                                 <td>{{$episode->episodeUrl}}</td>
                                 <td>{{$episode->rating}}</td>
                                 <td>{{$episode->year}}</td>
