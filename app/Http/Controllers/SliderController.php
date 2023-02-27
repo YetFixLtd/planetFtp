@@ -19,7 +19,7 @@ class SliderController extends Controller
             'title'=> 'required',
             'description'=> 'required',
             'productFile' => 'required',
-           
+
         ]);
     }
 
@@ -89,7 +89,7 @@ class SliderController extends Controller
         $productById = Slider::where('id', $request->id)->first();
         $productFile = $request->file('productFile');
         if ($productFile) {
-            unlink($productById->productFile);
+            // unlink($productById->productFile);
             $fileName = $productFile->getClientOriginalName();
             $uploadPath = 'sliderFile/';
             $productFile->move($uploadPath, $fileName);

@@ -22,9 +22,9 @@
                             <th>TV Series Name</th>
                             <th>Seasons</th>
                             <th>Episode Title</th>
-                            <th>Episode Description</th>
+                            <th>Image</th>
+                            <th>Description</th>
                             <th>File</th>
-                            <th>Url</th>
                             <th>Rating</th>
                             <th>Year</th>
                             <th>Publication Status</th>
@@ -37,9 +37,9 @@
                             <th>TV Series Name</th>
                             <th>Seasons</th>
                             <th>Episode Title</th>
-                            <th>Episode Description</th>
+                            <th>Image</th>
+                            <th>Description</th>
                             <th>File</th>
-                            <th>Url</th>
                             <th>Rating</th>
                             <th>Year</th>
                             <th>Publication Status</th>
@@ -47,37 +47,25 @@
                         </tr>
                         </tfoot>
                         <tbody>
-
                             @foreach($episodes as $episode)
-                            {{-- {{ dd($episode) }} --}}
                             <tr>
                                 <td>{{$episode->id}}</td>
                                 <td>{{$episode->tvSeriesTitle}}</td>
                                 <td>{{$episode->seasonTitle}}</td>
                                 <td>{{$episode->episodeTitle}}</td>
-                                <td>{{$episode->episodeDescription}}</td>
                                 <td>
-                                    {{-- {{$episode->episodeFile}} --}}
                                     <img src="{{asset($episode->episodeFile) }}" alt="{{$episode->id}}" height="100" width="100">
                                 </td>
-                                <td>{{$episode->episodeUrl}}</td>
-                                <td>{{$episode->rating}}</td>
-                                <td>{{$episode->year}}</td>
-                                {{-- <th><img src="{{asset($episode->episodeUrl) }}" alt="{{$episode->id}}" height="100" width="100"></th> --}}
+                                <td>{{$episode->episodeDescription}}</td>
                                 <th>
                                     <video width="320" height="240" controls>
                                         <source src="{{ $episode->episodeUrl }}" type="video/mp4">
                                     </video>
                                 </th>
-                                {{-- <th>
-                            <iframe width="727" height="409" src="{{ $episode->episodeUrl }}" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                            </iframe>
-                        </th> --}}
+                                <td>{{$episode->rating}}</td>
+                                <td>{{$episode->year}}</td>
                                 <td>{{$episode->publicationStatus == 1 ? 'Published' : 'Unpublished'}}</td>
                                 <td>
-
                                     @if($episode->publicationStatus==1)
                                     <a href="{{route('/unpublished-episode',['id' => $episode->id])}}" class="btn btn-success btn-circle">
                                         <i class="fas fa-check"></i>
@@ -95,7 +83,6 @@
                                     </a>
                                 </td>
                             </tr>
-
                             @endforeach
                         </tbody>
                     </table>

@@ -25,7 +25,6 @@
                                 ->orderBy('tv_series.id', 'DESC')
                                 ->limit(10)
                                 ->get();
-                            
                         @endphp
 
 

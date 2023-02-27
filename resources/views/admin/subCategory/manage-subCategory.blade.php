@@ -20,7 +20,7 @@
                             <th>ID</th>
                             <th>Category Name</th>
                             <th>Sub Category Name</th>
-                            <th>Sub Category Link</th>
+                            {{-- <th>Sub Category Link</th> --}}
                             <th>Publication Status</th>
                             <th>Action</th>
                         </tr>
@@ -41,8 +41,8 @@
                                 <td>{{$subCategory->id}}</td>
                                 <td>{{$subCategory->categoryTitle}}</td>
                                 <td>{{$subCategory->subCategoryTitle}}</td>
-                                
-                               
+
+
                                 <td>{{$subCategory->publicationStatus == 1 ? 'Published' : 'Unpublished'}}</td>
                                 <td>
 

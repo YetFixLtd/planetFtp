@@ -3,7 +3,7 @@
     <x-auth-card>
         <x-slot name="logo">
            <div class="admin-logo"> <a href="/">
-                     <img src="{{ asset('assets/logo.png') }}"/>
+                     <img src="{{ asset('newFrontEnd/logo.png') }}"/>
                 </a>
             </div>
         </x-slot>
