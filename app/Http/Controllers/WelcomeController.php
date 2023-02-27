@@ -91,7 +91,7 @@ class WelcomeController extends Controller
     {
 
         if ($type === 'tv') {
-            return redirect()->route('episode', ['id' => $id]);
+            return redirect()->route('/subCatTvSeason', ['id' => $id]);
         } else if ($type === 'movies') {
             return redirect()->route('movie', ['id' => $id]);
         }
