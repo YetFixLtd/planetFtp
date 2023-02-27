@@ -21,7 +21,7 @@
 {{--                    <div class="card-header text-center">{{ __('Edit episode') }}</div>--}}
                     <div class="card-body">
                         {!! Form::open(['route'=>'/episodeUpdate','method'=>'POST','class'=>'form-horizontal','enctype'=>'multipart/form-data', 'name'=>'editepisodeForm' ])!!}
-                        
+
                         <div class="form-group row">
                             <label for="inputpassword3" class="col-md-4 col-form-label text-md-right">TV Series Title </label>
                             <div class="col-md-8">
@@ -52,8 +52,8 @@
                                 <span class="text-danger">{{$errors->has('episodeTitle') ? $errors->first('episodeTitle') : ''}}</span>
                             </div>
                         </div>
-                       
-                       
+
+
                         <div class="form-group row">
                             <label for="inputpassword3" class="col-md-4 col-form-label text-md-right">episode Description </label>
                             <div class="col-md-8">
@@ -123,8 +123,8 @@
 
 <script>
     document.forms['editepisodeForm'].elements['publicationStatus'].value={{$episode->publicationStatus}}
-    document.forms['editepisodeForm'].elements['categoryId'].value={{$episode->categoryId}}
-    document.forms['editepisodeForm'].elements['SubCategoryId'].value={{$episode->SubCategoryId}}
+    document.forms['editepisodeForm'].elements['tvSeriesId'].value={{$episode->tvSeriesId}}
+    document.forms['editepisodeForm'].elements['seasonId'].value={{$episode->seasonId}}
 </script>
 
 @endsection
