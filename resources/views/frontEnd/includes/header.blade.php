@@ -23,12 +23,13 @@
                         TV</span></a>
             </li> --}}
             @php
-                $category=\App\Models\Category::where('id', 1)->first();
+                $category = \App\Models\Category::where('id', 1)->first();
             @endphp
 
             <li class="dropdown">
-                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i class="fa fa-chevron-down"></i></a>
+                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i
+                        class="fa fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
                     @php
                         $subCategory = \App\Models\SubCategory::where('categoryId', 1)->get();
@@ -43,11 +44,12 @@
                 </ul>
             </li>
             @php
-                $category=\App\Models\Category::where('id', 2)->first();
+                $category = \App\Models\Category::where('id', 2)->first();
             @endphp
             <li class="dropdown">
-                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i class="fa fa-chevron-down"></i></a>
+                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i
+                        class="fa fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
 
                     @php
@@ -63,11 +65,12 @@
                 </ul>
             </li>
             @php
-                $category=\App\Models\Category::where('id', 3)->first();
+                $category = \App\Models\Category::where('id', 3)->first();
             @endphp
             <li class="dropdown">
-                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i class="fa fa-chevron-down"></i></a>
+                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i
+                        class="fa fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
                     @php
                         $subCategory = \App\Models\SubCategory::where('categoryId', 3)->get();
@@ -82,11 +85,12 @@
                 </ul>
             </li>
             @php
-                $category=\App\Models\Category::where('id', 4)->first();
+                $category = \App\Models\Category::where('id', 4)->first();
             @endphp
             <li class="dropdown">
-                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i class="fa fa-chevron-down"></i></a>
+                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i
+                        class="fa fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
                     @php
                         $subCategory = \App\Models\SubCategory::where('categoryId', 4)->get();
@@ -95,17 +99,18 @@
                     @foreach ($subCategory as $item)
                         <li>
                             <a
-                                href="{{ route('/subCatProductRoute', ['id' => $item->id]) }}">{{ $item->subCategoryTitle }}</a>
+                                href="{{ route('/subCatTvSeries', ['id' => $item->id]) }}">{{ $item->subCategoryTitle }}</a>
                         </li>
                     @endforeach
                 </ul>
             </li>
             @php
-                $category=\App\Models\Category::where('id', 5)->first();
+                $category = \App\Models\Category::where('id', 5)->first();
             @endphp
             <li class="dropdown">
-                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i class="fa fa-chevron-down"></i></a>
+                <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i
+                        class="fa fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
                     @php
                         $subCategory = \App\Models\SubCategory::where('categoryId', 5)->get();
