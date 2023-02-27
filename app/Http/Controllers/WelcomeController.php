@@ -254,18 +254,17 @@ class WelcomeController extends Controller
     public function subCatTvView($id)
     {
         // dd($id);
-        $children2 = DB::table('sub_categories')
+        $TvSeroesCategory = DB::table('sub_categories')
             ->where('sub_categories.id', '=', $id)
-            ->select('sub_categories.*')
-            ->get();
+            ->select('sub_categories.subCategoryTitle')->first();
+
         $children = DB::table('tv_series')
             ->select('tv_series.*')
-            ->where('tv_series.SubCategoryId', '=', $id)
-            //->where('products.categoryId', 1)
-            ->get();
+            ->where('tv_series.SubCategoryId', '=', $id)->orderBy('created_at', 'desc')->paginate(20);
+
         //dd($children);
         //dd($children2);
-        return view('frontEnd.home.TvSeriesCollection', ['children' => $children, 'children2' => $children2]);
+        return view('frontEnd.home.TvSeriesCollection', ['children' => $children, 'TvSeroesCategory' => $TvSeroesCategory]);
     }
 
     public function subCatTvSeason($id)

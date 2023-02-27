@@ -142,7 +142,7 @@
     </div>
 
     <div id="result" class="col-md-offset-10"
-        style='background-color:skyblue;overflow:hidden; position:fixed; right:0px; z-index:-1; padding-top:2px;padding-bottom:2px;'>
+        style='background-color:skyblue;overflow:auto; position:fixed; right:0px;  z-index:-1; padding-top:2px;padding-bottom:2px;'>
     </div>
 
 </header>
