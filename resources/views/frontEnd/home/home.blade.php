@@ -18,12 +18,12 @@
                                 ->select('products.*')
                                 ->orderBy('products.id', 'DESC')
                                 ->where('categoryId', 1)
-                                ->paginate(8);
+                                ->paginate(12);
                             
                             $tvSeries = DB::table('tv_series')
                                 ->select('tv_series.*')
                                 ->orderBy('tv_series.id', 'DESC')
-                                ->limit(10)
+                                ->limit(12)
                                 ->get();
                         @endphp
 
