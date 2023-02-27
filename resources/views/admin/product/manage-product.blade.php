@@ -22,6 +22,7 @@
                             <th>Category Name</th>
                             <th>Sub Category Name</th>
                             <th>Title</th>
+                            <th>Image</th>
                             <th>Description</th>
                             <th>File</th>
                             <th>Publication Status</th>
@@ -34,6 +35,7 @@
                             <th>Category Name</th>
                             <th>Sub Category Name</th>
                             <th>Title</th>
+                            <th>Image</th>
                             <th>Description</th>
                             <th>File</th>
                             <th>Publication Status</th>
@@ -49,16 +51,16 @@
                                 <td>{{$product->categoryTitle}}</td>
                                 <td>{{$product->subCategoryTitle}}</td>
                                 <td>{{$product->productTitle}}</td>
+                                <td><img src="{{asset($product->productFile) }}" alt="{{$product->id}}" height="100" width="100"></td>
                                 <td>{{$product->productDescription}}</td>
-                                {{-- <th><img src="{{asset($product->productUrl) }}" alt="{{$product->id}}" height="100" width="100"></th> --}}
                                 <th>
                                     <video width="320" height="240" controls>
                                         <source src="{{ $product->productUrl }}" type="video/mp4">
                                     </video>
                                 </th>
                                 {{-- <th>
-                            <iframe width="727" height="409" src="{{ $product->productUrl }}" frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            <iframe width="727" height="409" src="{{ $product->productUrl }}" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                             </iframe>
                         </th> --}}
