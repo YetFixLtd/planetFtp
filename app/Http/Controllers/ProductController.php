@@ -135,7 +135,7 @@ class ProductController extends Controller
         $productById = Product::where('id', $request->id)->first();
         $productFile = $request->file('productFile');
         if ($productFile) {
-            unlink($productById->productFile);
+            // unlink($productById->productFile);
             $fileName = $productFile->getClientOriginalName();
             $uploadPath = 'productFile/';
             $productFile->move($uploadPath, $fileName);

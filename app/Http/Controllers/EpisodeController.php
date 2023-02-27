@@ -138,7 +138,7 @@ class EpisodeController extends Controller
         $episode = Episode::where('id', $request->id)->first();
         $episodeFile = $request->file('episodeFile');
         if ($episodeFile) {
-            unlink($episode->episodeFile);
+            // unlink($episode->episodeFile);
             $fileName = $episodeFile->getClientOriginalName();
             $uploadPath = 'episodeFile/';
             $episodeFile->move($uploadPath, $fileName);
