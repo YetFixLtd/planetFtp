@@ -20,12 +20,12 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
+    {{-- <div class="sidebar-heading">
         Interface
-    </div>
+    </div> --}}
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
@@ -39,10 +39,10 @@
                 <a class="collapse-item" href="{{ route('/roleManage') }}">Manage Role</a>
             </div>
         </div>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
@@ -56,7 +56,7 @@
                 <a class="collapse-item" href="{{ route('/userManage') }}">Manage User</a>
             </div>
         </div>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -91,7 +91,7 @@
         </div>
     </li>
 
-    
+
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
