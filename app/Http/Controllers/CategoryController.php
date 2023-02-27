@@ -33,13 +33,10 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-       
-
         $this->validate($request, [
             'categoryTitle' => 'required',
             'publicationStatus' => 'required'
         ]);
-    
 
         $category = new Category();
         $category->categoryTitle = $request->categoryTitle;
@@ -94,8 +91,8 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
-        return redirect()->route('/catManage')->with('message', 'Category info deleted successfully');
+        // $category = Category::find($id);
+        // $category->delete();
+        // return redirect()->route('/catManage')->with('message', 'Category info deleted successfully');
     }
 }

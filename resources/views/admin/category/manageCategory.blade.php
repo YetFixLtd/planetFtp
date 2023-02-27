@@ -62,10 +62,9 @@
 {{--                                        <span class="glyphicon glyphicon-trash"></span>--}}
 {{--                                        <i class="fas fa-trash"></i>--}}
 {{--                                    </a>--}}
-                                    <a href="{{route('/catDelete',['id' => $category->id])}}" class="btn btn-danger btn-circle" onclick="return confirm('Are you sure to delete this');">
-                                        {{--                                        <span class="glyphicon glyphicon-trash"></span>--}}
+                                    {{-- <a href="{{route('/catDelete',['id' => $category->id])}}" class="btn btn-danger btn-circle" onclick="return confirm('Are you sure to delete this');">
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                    </a> --}}
                                 </td>
                             </tr>
 
