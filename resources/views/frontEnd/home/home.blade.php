@@ -30,8 +30,8 @@
 
 
                         @forelse($products as $product)
-                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
-                                data-publish-date="18.04.2021" data-wow-duration="0.7s" data-wow-offset="0">
+                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5" data-wow-duration="0.7s"
+                                data-wow-offset="0">
 
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
@@ -62,7 +62,7 @@
 
                         @foreach ($tvSeries as $tv)
                             <div class="post post-height hover-img-scale wow fadeInDown" data-rating="5"
-                                data-publish-date="18.04.2021" data-wow-duration="0.7s" data-wow-offset="0">
+                                data-wow-duration="0.7s" data-wow-offset="0">
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('subCatTvSeason', ['id' => $tv->id]) }}"><img
                                             src="{{ asset($tv->tvSeriesFile) }}" alt="Rifle Ganj"

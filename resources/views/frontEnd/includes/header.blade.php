@@ -126,7 +126,7 @@
             </li>
         </ul>
 
-        <div class="search-container">
+        <div class="search-container" style="relative">
             <form name="fproductlistsrch" id="fproductlistsrch" class="navbar-form navbar-right" action="">
                 <div class="form-group">
                     <input type="text" id="txtSearch" name="txtSearch" class="form-control" placeholder="Search..."
@@ -141,6 +141,8 @@
 
     </div>
 
-    <div id="result" class="col-md-offset-10" style='background-color:skyblue;overflow:scroll'></div>
+    <div id="result" class="col-md-offset-10"
+        style='background-color:skyblue;overflow:hidden; position:fixed; right:0px; z-index:-1; padding-top:2px;padding-bottom:2px;'>
+    </div>
 
 </header>
