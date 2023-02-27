@@ -9,6 +9,9 @@
         @include('frontEnd.includes.slider')
 
         <div class="news-container">
+            <div style="margin-bottom:50px;">
+                <h1 class="text-center h1" style="letter-spacing: 1.5px;font-weight:bold;">Recent Movies</h1>
+            </div>
             <hr />
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
@@ -19,7 +22,7 @@
                                 ->orderBy('products.id', 'DESC')
                                 ->where('categoryId', 1)
                                 ->paginate(12);
-                            
+
                             $tvSeries = DB::table('tv_series')
                                 ->select('tv_series.*')
                                 ->orderBy('tv_series.id', 'DESC')
@@ -27,11 +30,9 @@
                                 ->get();
                         @endphp
 
-
-
                         @forelse($products as $product)
-                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5" data-wow-duration="0.7s"
-                                data-wow-offset="0">
+                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
+                                data-wow-duration="0.7s" data-wow-offset="0">
 
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
@@ -77,6 +78,74 @@
 
                     </div>
 
+                    <div style="margin-bottom:50px;">
+                        <h1 class="text-center h1" style="letter-spacing: 1.5px;font-weight:bold;">Recent Games</h1>
+                    </div>
+                    <hr/>
+
+                    <div class="content news-gallery">
+                        @php
+                            $games = DB::table('products')
+                                ->select('products.*')
+                                ->orderBy('products.id', 'DESC')
+                                ->where('categoryId', 2)
+                                ->paginate(12);
+                        @endphp
+
+                        @forelse($games as $product)
+                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
+                                data-wow-duration="0.7s" data-wow-offset="0">
+
+                                <div class="post-wrapper">
+                                    <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
+                                            src="{{ asset($product->productFile) }}" alt="Rifle Ganj"
+                                            style="width: 300px; height: 450px; margin: auto;" /></a>
+                                    <div class="block">
+
+                                        <div class="title">{{ $product->productTitle }}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @empty
+                        @endforelse
+
+                    </div>
+
+
+                    <div style="margin-bottom:50px;">
+                        <h1 class="text-center h1" style="letter-spacing: 1.5px;font-weight:bold;">Recent Softwares</h1>
+                    </div>
+                    <hr/>
+
+                    <div class="content news-gallery">
+                        @php
+                            $softwares = DB::table('products')
+                                ->select('products.*')
+                                ->orderBy('products.id', 'DESC')
+                                ->where('categoryId', 3)
+                                ->paginate(12);
+                        @endphp
+
+                        @forelse($softwares as $product)
+                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
+                                data-wow-duration="0.7s" data-wow-offset="0">
+
+                                <div class="post-wrapper">
+                                    <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
+                                            src="{{ asset($product->productFile) }}" alt="Rifle Ganj"
+                                            style="width: 300px; height: 450px; margin: auto;" /></a>
+                                    <div class="block">
+
+                                        <div class="title">{{ $product->productTitle }}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @empty
+                        @endforelse
+
+                    </div>
 
 
                 </div>
