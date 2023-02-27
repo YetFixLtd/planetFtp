@@ -17,7 +17,7 @@
 }
 </style>
 <div>
-    <br><br><br><br><br><br><br>><h1 class="background-img"> WELCOME TO <br> FTP SERVER <br>ADMIN PANEL
+    <br><br><br><br><br><br><br><h1 class="background-img"> WELCOME TO <br> FTP SERVER <br>ADMIN PANEL
 </div>
 
 @endsection
