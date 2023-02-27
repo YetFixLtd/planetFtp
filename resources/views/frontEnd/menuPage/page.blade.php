@@ -14,7 +14,7 @@
             <div class="col-lg-5">
                 {{ $children->onEachSide(1)->links() }}
             </div>
-            <hr/>
+            <hr />
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div class="content news-gallery">
@@ -22,8 +22,8 @@
 
 
                         @forelse($children as $product)
-                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
-                                data-publish-date="18.04.2021" data-wow-duration="0.7s" data-wow-offset="0">
+                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5" data-wow-duration="0.7s"
+                                data-wow-offset="0">
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
                                             src="{{ asset($product->productFile) }}" alt="Rifle Ganj"
@@ -43,5 +43,3 @@
         </div>
     </main>
 @endsection
-
-

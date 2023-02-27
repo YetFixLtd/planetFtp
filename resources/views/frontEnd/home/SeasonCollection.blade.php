@@ -14,7 +14,7 @@
 
             <div class="col-sm-12 m-auto">
                 <img src="{{ '/' }}{{ $poster->tvSeriesFile }}" class="img-responsive" alt="Movie Poster"
-                    style="height:auto">
+                    style="height:auto; width:100%">
             </div>
 
         </div>
