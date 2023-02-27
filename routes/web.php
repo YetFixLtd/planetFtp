@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\WelcomeController;
@@ -383,4 +384,8 @@ Route::post('send', [ContactController::class, 'send'])->name('email.send');
 
 
 
-Route::get('/others', [WelcomeController::class, 'others_details']);
+Route::get('/others-details/{id}', function ($id) {
+    $productsData = DB::table('products')->where('products.SubCategoryId', $id)->get();
+    //dd($productsData);
+    return view('frontEnd.home.SubCategoryProducts', ['productsData' => $productsData]);
+});

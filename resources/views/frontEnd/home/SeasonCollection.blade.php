@@ -1,98 +1,104 @@
 @extends('frontEnd.master')
 
-@section('title', 'Tv Serial Season')
+@section('title')
+    Tv Series Details
+@endsection
+
+
 
 @section('main-content')
-    <style>
-        .playAndDownload {
-            background: green;
-            color: #fff;
-            padding: 5px;
-            display: block;
-            text-align: center;
-            border-radius: 5px;
-        }
-    </style>
+    <div class="container">
 
-    <section class="container">
+        <div class="row">
 
 
-        @foreach ($poster as $poster)
-            <div class="poster">
-                <img src="{{ '/' }}{{ $poster->tvSeriesFile }}" alt="Poster Image" class="img-fluid" width="100%"
-                    height="650px">
+            <div class="col-sm-12 m-auto">
+                <img src="{{ '/' }}{{ $poster->tvSeriesFile }}" class="img-responsive" alt="Movie Poster"
+                    style="height:auto">
             </div>
-        @endforeach
-
-
-        <ul class="nav nav-tabs " role="tablist">
-
-            @foreach ($sesons as $season)
-                <li class="active">
-                    <a href="#home {{ $season->tvSeriesId }}" role="tab" data-toggle="tab">
-                        <icon class="fa fa-home"></icon> {{ $season->seasonTitle }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-
-
-        <div class="tab-content">
-            @foreach ($episodes as $episode)
-                <div class="tab-pane fade active in" id="home{{ $episode->tvSeriesId }}">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <h3 class="h4 lead">{{ $episode->episodeTitle }}</h3>
-                                </td>
-                                <td><a href="{{ $episode->episodeUrl }}" class="playAndDownload lead ">Download </a></td>
-                                <td><a href="#" onclick="playVideo()" data-toggle="modal"
-                                        data-target="#videoModal{{ $episode->id }}"class="playAndDownload lead "
-                                        style="background:red;">Play
-                                    </a></td>
-                            </tr>
-
-                            <div class="modal fade" id="videoModal{{ $episode->id }}" tabindex="-1" role="dialog"
-                                aria-labelledby="videoModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <video id="videoPlayer" class="embed-responsive-item" controls>
-                                                    <source src="{{ $episode->episodeUrl }}" type="video/mp4">
-                                                </video>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </tbody>
-                    </table>
-                </div>
-            @endforeach
 
         </div>
+        <div class="page-header">
+            <h1>{{ $title->tvSeriesTitle }} </h1>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-nav">
+                <ul class="nav nav-tabs">
 
+                    {{-- {{ dd($sesons) }} --}}
 
+                    @foreach ($sesons as $season)
+                        <li role="presentation" id="act">
+                            <a href="#one{{ $season->id }}" aria-controls="one{{ $season->id }}" role="tab"
+                                data-toggle="tab" class="h4">{{ $season->seasonTitle }}
+                            </a>
+                        </li>
+                    @endforeach
 
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    @php($active = 0)
+                    @foreach ($episodes->groupBy('seasonId') as $key => $ep)
+                        <div role="tabpanel" class="tab-pane fade in {{ $active == 0 ? 'active' : '' }}"
+                            id="one{{ $key }}">
+                            @foreach ($ep as $episode)
+                                <table class="table table-striped">
 
+                                    <tbody>
+                                        <tr class="row ">
+                                            <td class="col-sm-6">
+                                                <h4 class="h4">{{ $episode->episodeTitle }}</h4>
+                                            </td>
+                                            <td class="col-sm-3">
+                                                <a href="{{ $episode->episodeUrl }}" class="btn btn-primary"
+                                                    style="display: block;">Download</a>
+                                            </td>
+                                            <td class="col-sm-3"> <a data-toggle="modal"
+                                                    data-target="#videoModal{{ $episode->id }}" class="btn btn-danger "
+                                                    style="display: block;">Play</a>
 
-    </section>
+                                            </td>
 
+                                        </tr>
+
+                                        <div class="modal fade" id="videoModal{{ $episode->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="embed-responsive embed-responsive-16by9">
+                                                            <video id="videoPlayer" class="embed-responsive-item" controls>
+                                                                <source src="{{ $episode->episodeUrl }}" type="video/mp4">
+                                                            </video>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        </div>
+                        @php($active++)
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        function playVideo() {
-            var videoPlayer = document.getElementById("videoPlayer");
-            videoPlayer.play();
-        }
+        window.addEventListener('load', function() {
+            const activeElement = document.getElementById('act');
+            activeElement.classList.add('active');
+        });
     </script>
-
-
-
-
 @endsection

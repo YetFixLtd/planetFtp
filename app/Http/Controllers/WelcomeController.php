@@ -275,7 +275,15 @@ class WelcomeController extends Controller
             ->select('tv_series.tvSeriesFile')
             ->where('tv_series.id', '=', $id)
             //->where('products.categoryId', 1)
-            ->get();
+            ->first();
+
+        //dd($poster);
+
+        $title = DB::table('tv_series')
+            ->select('tv_series.tvSeriesTitle')
+            ->where('tv_series.id', '=', $id)
+            //->where('products.categoryId', 1)
+            ->first();
 
         $sesons = DB::table('seasons')
             ->select('seasons.*')
@@ -284,10 +292,11 @@ class WelcomeController extends Controller
 
         $episodes = DB::table('episodes')
             ->select('episodes.*')
-            ->where('episodes.seasonId', '=', $id)
+            ->where('episodes.tvSeriesId', '=', $id)
             ->get();
+        //dd($episodes);
 
-        return view('frontEnd.home.SeasonCollection', ['poster' => $poster, 'sesons' => $sesons, 'episodes' => $episodes]);
+        return view('frontEnd.home.SeasonCollection', ['poster' => $poster, 'sesons' => $sesons, 'episodes' => $episodes, 'title' => $title]);
     }
 
     public function subCatTvEpisode($id)
@@ -300,5 +309,18 @@ class WelcomeController extends Controller
 
 
         return view('front.tvEpisode', ['children' => $children]);
+    }
+
+    /* subcategory products views*/
+    public function subCatProductViewsUniversal($id)
+    {
+        $children = DB::table('products')
+            ->join('categories', 'products.categoryId', '=', 'categories.id')
+            ->join('sub_categories', 'products.SubCategoryId', '=', 'sub_categories.id')
+            ->select('products.*', 'categories.categoryTitle', 'sub_categories.subCategoryTitle')
+            ->where('products.SubCategoryId', '=', $id)
+            ->get();
+        //dd($children);
+        return view('FrontEnd.home.SubcategoryProducts', ['children' => $children]);
     }
 }
