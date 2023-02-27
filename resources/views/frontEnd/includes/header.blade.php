@@ -132,11 +132,15 @@
                     <input type="text" id="txtSearch" name="txtSearch" class="form-control" placeholder="Search..."
                         autocomplete="off">
                 </div>
+                <a href="{{ url(request()->path('/')) }}" class="btn btn-default" id="reset">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                </a>
             </form>
+
         </div>
 
     </div>
 
-    <div id="result" class="col-md-offset-10"></div>
+    <div id="result" class="col-md-offset-10" style='background-color:skyblue;overflow:scroll'></div>
 
 </header>
