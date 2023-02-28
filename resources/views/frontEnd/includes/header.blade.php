@@ -2,12 +2,12 @@
     <div class="top-bar hidden-sm hidden-xs">
         <a class="logotype" href="{{ url('/') }}">
             <div class="logo"><img class="mt-8" src="{{ asset('newFrontEnd/logo.png') }}" alt="logotype" /></div>
-            <div class="text"><span style="white-space: nowrap;">FTP SERVER</span></div>
+            <div class="text"><span style="white-space: nowrap;">Home</span></div>
         </a>
     </div>
     <a class="logotype mobile-logotype" href="{{ url('/') }}">
         <div class="logo"><img class="mt-8" src="{{ asset('newFrontEnd/logo.png') }}" alt="logotype" /></div>
-        <div class="text"><span style="white-space: nowrap;">FTP SERVER</span></div>
+        <div class="text"><span style="white-space: nowrap;">Home</span></div>
     </a>
     <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar"
         aria-expanded="false" aria-controls="navbar">
