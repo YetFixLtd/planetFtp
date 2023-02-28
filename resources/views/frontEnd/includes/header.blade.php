@@ -126,7 +126,7 @@
             </li>
         </ul>
 
-        <div class="search-container" style="relative">
+        <div class="search-container" style="relative; ">
             <form name="fproductlistsrch" id="fproductlistsrch" class="navbar-form navbar-right" action="">
                 <div class="form-group">
                     <input type="text" id="txtSearch" name="txtSearch" class="form-control" placeholder="Search..."
@@ -141,8 +141,34 @@
 
     </div>
 
-    <div id="result" class="col-md-offset-10"
-        style='background-color:skyblue;overflow:auto; position:fixed; right:0px;  z-index:-1; padding-top:2px;padding-bottom:2px;'>
+    <div class="col-md-offset-10"
+        style='background-color:transparent;overflow:auto; position:fixed; height:98vh; right:0px;  z-index:-1; min-width:350px; '>
+        <ul id="result" style="list-style:none; background:#FF91C6; opacity:0.95;width:300px;">
+
+        </ul>
     </div>
 
+
+
 </header>
+
+<script>
+    const input = document.getElementById("txtSearch");
+    const result = document.getElementById("result");
+
+    const displayResult = function() {
+        if (input.value.trim() === "") {
+            result.style.display = "none";
+        } else {
+            result.style.display = "block";
+        }
+    }
+    input.addEventListener("keyup", displayResult);
+    // window.addEventListener('click', function() {
+    //     result.style.display = "none";
+    // });
+
+    window.addEventListener('resize', function() {
+        result.style.display = "none";
+    });
+</script>

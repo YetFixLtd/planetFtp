@@ -77,11 +77,15 @@ class WelcomeController extends Controller
         foreach ($products as  $product) {
 
             $output .= '
-                 <ul>
-                 <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '">
-                  <img src="' . url($product['image']) . '" style="height: 116px; width: 113px;">
-                  ' . $product['text'] . '</a>
-                 </ul>
+
+                <li style="">
+                   <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '" >
+                      <img src="' . url($product['image']) . '" style="height: 200px; width: 90%; ">
+                      <p style="font-size:20px; letter-spacing:1.2px; font-weight:bold;"> ' . $product['text'] . '</p>
+                   </a>
+
+                </li>
+
                  ';
         }
         echo  $output;
