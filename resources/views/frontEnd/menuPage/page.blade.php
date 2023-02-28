@@ -8,8 +8,16 @@
     <main>
         {{-- @include('frontEnd.includes.slider') --}}
 
-        <div class="news-container">
-            <h3 class="ml-10">{{ $sub_category->subCategoryTitle }}</h3>
+        <div class="news-container" style="margin-right:65px;">
+            <div style="margin-top:85px; letter-spacing:1.2px; text-align:center;font-weight:bold;">
+                <h3 class="ml-10" style=" ">
+                    {{ $sub_category->subCategoryTitle }}</h3>
+                <h4 style="letter-spacing: 1.2px;font-weight:600">@php
+                    if (count($children) === 0) {
+                        echo ' Thre is no Movies Available';
+                    }
+                @endphp</h4>
+            </div>
             <hr />
             <div class="col-lg-5">
                 {{ $children->onEachSide(1)->links() }}
@@ -22,8 +30,8 @@
 
 
                         @forelse($children as $product)
-                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5" data-wow-duration="0.7s"
-                                data-wow-offset="0">
+                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
+                                data-wow-duration="0.7s" data-wow-offset="0">
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
                                             src="{{ asset($product->productFile) }}" alt="Rifle Ganj"

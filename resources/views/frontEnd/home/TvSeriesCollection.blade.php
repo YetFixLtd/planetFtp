@@ -4,7 +4,18 @@
 
 @section('main-content')
     <main>
-        <div class="news-container">
+
+        <div class="news-container" style="margin-right:45px;">
+            <div style="margin-top:75px; text-align:center;">
+                <h1 class="h1 lead" style="font-weight:bold; letter-spacing:1.2px;">
+                    {{ $TvSeroesCategory->subCategoryTitle }}
+                </h1>
+                <h4 style="letter-spacing: 1.2px;font-weight:600">@php
+                    if (count($children) === 0) {
+                        echo ' Thre is no Series Available';
+                    }
+                @endphp</h4>
+            </div>
             <hr />
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
@@ -27,6 +38,9 @@
 
                     </div>
                 </div>
+            </div>
+            <div class="h3 lead">
+                {{ $children->links() }}
             </div>
         </div>
     </main>

@@ -26,7 +26,7 @@
                     </style>
 
                     <div style="background-color: #000000; border-top: 10px solid black; border-bottom: 10px solid black;">
-                        <video id='video-id' style="width: 100%; height: auto;" controls>
+                        <video id='video-id' style="width: 100%; height: auto; margin-top:65px;" controls>
                             <source src="{{ $children->productUrl }}" title='{{ $children->productTitle }}'
                                 type='video/mp4' />
                         </video>
@@ -36,12 +36,12 @@
                     <!--td rowspan="13" style="width: auto; " > </td-->
                     <div style="margin: 15px;">
                         <div class="row" style="">
-                            <div class="col-md-4 vcenter" style="text-align: center;">
-                                <img style="width: 300px; height: 450px; margin: auto;"
+                            <div class=" col-sm-6 col-md-4 vcenter" style="text-align: center;">
+                                <img style="width: 100%; height: 450px; margin: auto;"
                                     src="{{ asset('/') }}{{ $children->productFile }}" />
 
                             </div>
-                            <div class="col-md-8 vcenter">
+                            <div class="col-sm-6 col-md-8 vcenter">
                                 <div class="news-container" style="padding-bottom: 0px;">
                                     <table class="table ewTable table-bordered" style="background-color: white;">
                                         <tr>
