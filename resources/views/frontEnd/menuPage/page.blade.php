@@ -8,7 +8,7 @@
     <main>
         {{-- @include('frontEnd.includes.slider') --}}
 
-        <div class="news-container" style="margin-right:65px;">
+        <div class="news-container">
             <div style="margin-top:85px; letter-spacing:1.2px; text-align:center;font-weight:bold;">
                 <h3 class="ml-10" style=" ">
                     {{ $sub_category->subCategoryTitle }}</h3>
