@@ -19,10 +19,8 @@
                 @endphp</h4>
             </div>
             <hr />
-            <div class="col-lg-5">
-                {{ $children->onEachSide(1)->links() }}
-            </div>
-            <hr />
+
+
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div class="content news-gallery">
@@ -46,6 +44,9 @@
                         @empty
                         @endforelse
                     </div>
+                </div>
+                <div class="lead text-primary " style="margin-left:50px;margin-top:8px;">
+                    {{ $children->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

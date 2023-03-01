@@ -20,7 +20,7 @@
                 <main>
                     <style type="text/css">
                         .vcenter {
-                            display: inline-block;
+                            /* display: inline-block; */
                             vertical-align: middle;
                         }
                     </style>
@@ -33,17 +33,17 @@
                     </div>
 
 
-                    <!--td rowspan="13" style="width: auto; " > </td-->
+
                     <div style="margin: 15px;">
                         <div class="row" style="">
-                            <div class=" col-sm-6 col-md-4 vcenter" style="text-align: center;">
+                            <div class="col-sm-6 col-md-4 vcenter">
                                 <img style="width: 100%; height: 450px; margin: auto;"
                                     src="{{ asset('/') }}{{ $children->productFile }}" />
 
                             </div>
                             <div class="col-sm-6 col-md-8 vcenter">
-                                <div class="news-container" style="padding-bottom: 0px;">
-                                    <table class="table ewTable table-bordered" style="background-color: white;">
+                                <div class="news-container" style="padding-bottom: 0px; width:100%;">
+                                    <table class="table ewTable table-bordered" style="background-color: white;width:100%;">
                                         <tr>
                                             <td colspan="2"
                                                 style="width: auto; font-size: 30px; text-transform: uppercase;">
@@ -96,6 +96,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <hr style="margin-top: 0;" />
                         <div style="height: 30px;">
                             <div class="btn-group pull-right" role="group">

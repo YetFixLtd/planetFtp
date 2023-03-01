@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="h3 lead">
+            <div class=" lead text-primary " style="margin-left:50px; ">
                 {{ $children->links() }}
             </div>
         </div>

@@ -1,3 +1,17 @@
+<style>
+    .search-result {
+        background-color: transparent;
+        overflow: auto;
+        position: fixed;
+        height: 98vh;
+        right: 10px;
+        z-index: -1;
+        min-width: 280px;
+        /* box-shadow: 0px 0px 30px rgba(184, 171, 171, 0.2); */
+        display: none;
+    }
+</style>
+
 <header class="style1">
     <div class="top-bar hidden-sm hidden-xs">
         <a class="logotype" href="{{ url('/') }}">
@@ -126,24 +140,21 @@
             </li>
         </ul>
 
-        <div class="search-container" style="relative; ">
+        <div class="search-container">
             <form name="fproductlistsrch" id="fproductlistsrch" class="navbar-form navbar-right" action="">
                 <div class="form-group">
                     <input type="text" id="txtSearch" name="txtSearch" class="form-control" placeholder="Search..."
                         autocomplete="off">
                 </div>
-                <a href="{{ url(request()->path('/')) }}" class="btn btn-default" id="reset">
-                    <i class="fa fa-refresh" aria-hidden="true"></i>
-                </a>
+
             </form>
 
         </div>
 
     </div>
 
-    <div class="col-md-offset-10"
-        style='background-color:transparent;overflow:auto; position:fixed; height:98vh; right:0px;  z-index:-1; min-width:350px; '>
-        <ul id="result" style="list-style:none; background:#FF91C6; opacity:0.95;width:300px;">
+    <div class="col-md-offset-10 search-result" id="result-container">
+        <ul id="result" class="list-group">
 
         </ul>
     </div>
@@ -154,7 +165,7 @@
 
 <script>
     const input = document.getElementById("txtSearch");
-    const result = document.getElementById("result");
+    const result = document.getElementById("result-container");
 
     const displayResult = function() {
         if (input.value.trim() === "") {
@@ -164,9 +175,18 @@
         }
     }
     input.addEventListener("keyup", displayResult);
-    // window.addEventListener('click', function() {
-    //     result.style.display = "none";
-    // });
+
+    window.addEventListener('click', function(event) {
+
+        const targetElement = event.target;
+        const classListTag = targetElement.classList;
+        if (classListTag[0] === 'owl-next') {
+            return null;
+        } else {
+            result.style.display = "none";
+        }
+
+    });
 
     window.addEventListener('resize', function() {
         result.style.display = "none";

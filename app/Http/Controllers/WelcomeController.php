@@ -78,9 +78,9 @@ class WelcomeController extends Controller
 
             $output .= '
 
-                <li style="">
+                <li  class="list-group-item shadow" style=" background:#fecaca; opacity:0.95; ">
                    <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '" >
-                      <img src="' . url($product['image']) . '" style="height: 200px; width: 90%; ">
+                      <img src="' . url($product['image']) . '" style="height: 200px; width: 100%;" class="rounded">
                       <p style="font-size:20px; letter-spacing:1.2px; font-weight:bold;"> ' . $product['text'] . '</p>
                    </a>
 
@@ -232,7 +232,7 @@ class WelcomeController extends Controller
             ->join('categories', 'products.categoryId', '=', 'categories.id')
             ->join('sub_categories', 'products.SubCategoryId', '=', 'sub_categories.id')
             ->select('products.*', 'categories.categoryTitle', 'sub_categories.subCategoryTitle')
-            ->where('products.SubCategoryId', '=', $id)->paginate(100);
+            ->where('products.SubCategoryId', '=', $id)->paginate(50);
         // ->get();
 
         return view('frontEnd.menuPage.page', compact('children', 'sub_category', 'all_sub_categories'));
@@ -264,7 +264,7 @@ class WelcomeController extends Controller
 
         $children = DB::table('tv_series')
             ->select('tv_series.*')
-            ->where('tv_series.SubCategoryId', '=', $id)->orderBy('created_at', 'desc')->paginate(20);
+            ->where('tv_series.SubCategoryId', '=', $id)->orderBy('created_at', 'desc')->paginate(50);
 
         //dd($children);
         //dd($children2);
