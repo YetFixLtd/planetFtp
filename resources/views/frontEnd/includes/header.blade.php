@@ -6,9 +6,18 @@
         height: 98vh;
         right: 10px;
         z-index: -1;
-        min-width: 280px;
+        max-width: 280px;
+        min-width: 300px;
         /* box-shadow: 0px 0px 30px rgba(184, 171, 171, 0.2); */
         display: none;
+        /* hidden-sm hidden-md hidden-lg  */
+    }
+
+    @media (max-width: 767px) {
+        .mobile-color {
+            background-color: #5c4444;
+            color: white;
+        }
     }
 </style>
 
@@ -18,11 +27,24 @@
             <div class="logo"><img class="mt-8" src="{{ asset('newFrontEnd/logo.png') }}" alt="logotype" /></div>
             <div class="text"><span style="white-space: nowrap;">Home</span></div>
         </a>
+
     </div>
     <a class="logotype mobile-logotype" href="{{ url('/') }}">
         <div class="logo"><img class="mt-8" src="{{ asset('newFrontEnd/logo.png') }}" alt="logotype" /></div>
         <div class="text"><span style="white-space: nowrap;">Home</span></div>
     </a>
+
+    <div class="search-container float-end">
+        <form name="fproductlistsrch" id="fproductlistsrch" class="navbar-form navbar-right" action="">
+            <div class="form-group">
+                <input type="text" id="txtSearch" name="txtSearch" class="form-control mobile-color"
+                    placeholder="Search..." autocomplete="off">
+            </div>
+
+        </form>
+
+    </div>
+
     <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar"
         aria-expanded="false" aria-controls="navbar">
         <span class="bar"></span>
@@ -144,16 +166,7 @@
             </li>
         </ul>
 
-        <div class="search-container">
-            <form name="fproductlistsrch" id="fproductlistsrch" class="navbar-form navbar-right" action="">
-                <div class="form-group">
-                    <input type="text" id="txtSearch" name="txtSearch" class="form-control" placeholder="Search..."
-                        autocomplete="off">
-                </div>
 
-            </form>
-
-        </div>
 
     </div>
 
@@ -178,7 +191,6 @@
             result.style.display = "block";
         }
     }
-    input.addEventListener("keyup", displayResult);
 
     window.addEventListener('click', function(event) {
 
@@ -195,4 +207,6 @@
     window.addEventListener('resize', function() {
         result.style.display = "none";
     });
+
+    input.addEventListener("keyup", displayResult);
 </script>
