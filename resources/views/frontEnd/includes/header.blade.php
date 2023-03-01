@@ -6,7 +6,8 @@
         height: 98vh;
         right: 10px;
         z-index: -1;
-        min-width: 280px;
+        max-width: 280px;
+        min-width: 300px;
         /* box-shadow: 0px 0px 30px rgba(184, 171, 171, 0.2); */
         display: none;
     }
@@ -174,7 +175,6 @@
             result.style.display = "block";
         }
     }
-    input.addEventListener("keyup", displayResult);
 
     window.addEventListener('click', function(event) {
 
@@ -191,4 +191,6 @@
     window.addEventListener('resize', function() {
         result.style.display = "none";
     });
+
+    input.addEventListener("keyup", displayResult);
 </script>
