@@ -31,11 +31,11 @@
     </button>
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-            {{-- <li class="dropdown">
-                <a href="{{ url('/') }}"><span
+            <li class="dropdown">
+                <a href="http://bciptv.net/"><span
                         style="font-weight: 900; border: 2px solid #800040; border-radius: 5px; padding: 7px;">LIVE
                         TV</span></a>
-            </li> --}}
+            </li>
             @php
                 $category = \App\Models\Category::where('id', 1)->first();
             @endphp
@@ -118,10 +118,10 @@
                     @endforeach
                 </ul>
             </li>
-            @php
+            {{-- @php
                 $category = \App\Models\Category::where('id', 5)->first();
-            @endphp
-            <li class="dropdown">
+            @endphp --}}
+            {{-- <li class="dropdown">
                 <a class="dropdown-toggle" href="{{ url('/') }}" data-toggle="dropdown" role="button"
                     aria-haspopup="true" aria-expanded="false">{{ $category->categoryTitle ?? '' }}<i
                         class="fa fa-chevron-down"></i></a>
@@ -137,6 +137,10 @@
                         </li>
                     @endforeach
                 </ul>
+            </li> --}}
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" href="http://103.144.48.90/FILE/">Index</a>
             </li>
         </ul>
 
