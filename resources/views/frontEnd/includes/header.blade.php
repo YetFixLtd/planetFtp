@@ -10,7 +10,7 @@
         min-width: 300px;
         /* box-shadow: 0px 0px 30px rgba(184, 171, 171, 0.2); */
         display: none;
-        /* hidden-sm hidden-md hidden-lg  */
+
     }
 
     @media (max-width: 767px) {
@@ -191,8 +191,8 @@
     window.addEventListener('click', function(event) {
 
         const targetElement = event.target;
-        const classListTag = targetElement.classList;
-        if (classListTag[0] === 'owl-next') {
+        const targetedClass = targetElement.classList;
+        if (targetedClass[0] === 'owl-next') {
             return null;
         } else {
             result.style.display = "none";
