@@ -377,6 +377,8 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => 'SliderController@destroy',
         'as' => '/sliderDelete'
     ]);
+
+    Route::resource('link', LinkController::class);
 });
 
 Route::get('contact', [ContactController::class, 'index']);

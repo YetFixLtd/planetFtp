@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Episode;
+use App\Models\Link;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
@@ -16,8 +17,13 @@ class WelcomeController extends Controller
 
     public function index()
     {
+        $tv = Link::where('type', 'LiveTv')->first();
+        $index = Link::where('type', 'Index')->first();
 
-        return view('frontEnd.home.home');
+        return view('frontEnd.home.home', [
+            'tv' => $tv,
+            'index' => $index
+        ]);
     }
     public function searchResult(Request $request)
     {
