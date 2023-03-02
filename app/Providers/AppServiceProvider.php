@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use View;
 use App\Models\Category;
+use App\Models\Link;
 use DB;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+
         // View::composer('frontEnd.home.home', function($view) {
         View::composer('*', function($view) {
             //$categories = Category::where('publicationStatus', 1)->get();
@@ -35,11 +36,15 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categories', $categories);
         });
 
-        // View::composer('*', function($view) {
-        //     //$categories = Category::where('publicationStatus', 1)->get();
-        //     $categories = Category::all();
-        //     $view->with('categories', $categories);
-        // });
+        View::composer('*', function($view) {
+            $tv = Link::where('type', 'LiveTv')->first();
+            $index = Link::where('type', 'Index')->first();
+
+            $view->with([
+                'tv' => $tv,
+                'index' => $index,
+            ]);
+        });
 
 
 
