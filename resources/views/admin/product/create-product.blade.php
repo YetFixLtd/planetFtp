@@ -227,15 +227,12 @@
             const dropDown = document.getElementById('dropdown');
             const searchInput = document.getElementById('searchInput');
             const category = document.getElementById('cat');
-            const selectedText = category.options[category.selectedIndex].text;
             const query = searchInput.value;
-
 
             if (query.trim().length > 2) {
 
                 dropDown.style.display = "block";
                 const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
-                const tvSeriesUrl = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}}&query=${query}`;
 
                 const response = await fetch(url);
                 const data = await response.json();
@@ -245,7 +242,7 @@
 
                 movieCollection = results;
                 dropDown.innerHTML = '';
-                const branch = "Movie and tv series";
+
                 movieCollection.map((movie) => {
                     const imageUrl = `
                 https: //image.tmdb.org/t/p/w500/${movie.poster_path}`;
