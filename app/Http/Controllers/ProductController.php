@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Session;
 
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
-use App\Models\Product;
-use Session;
-use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -34,7 +34,7 @@ class ProductController extends Controller
             'SubCategoryId' => 'required',
             'productTitle' => 'required',
             'productDescription' => 'required',
-            'productFile' => 'required',
+            'productFile' => '',
             'productUrl' => 'required',
             'rating' => 'required',
             'year' => 'required',
@@ -75,7 +75,7 @@ class ProductController extends Controller
             ->join('categories', 'products.categoryId', '=', 'categories.id')
             ->join('sub_categories', 'products.SubCategoryId', '=', 'sub_categories.id')
             ->select('products.*', 'categories.categoryTitle', 'sub_categories.subCategoryTitle')
-            ->orderBy('id','Desc')
+            ->orderBy('id', 'Desc')
             ->get();
         return view('admin.product.manage-product', ['products' => $products,]);
     }

@@ -5,7 +5,6 @@
 @endsection
 
 @section('mainContent')
-
     <div class="container-fluid" id="vue_app">
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -24,21 +23,28 @@
                             {{-- <hr> --}}
 
                             <div class="card-body">
-                                {!! Form::open(['route' => '/productSave', 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+                                {!! Form::open([
+                                    'route' => '/productSave',
+                                    'method' => 'POST',
+                                    'class' => 'form-horizontal',
+                                    'enctype' => 'multipart/form-data',
+                                ]) !!}
 
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Select
                                         Category</label>
                                     <div class="col-md-8">
-                                        <select class="form-control" name="categoryId" v-model="category_id" @change="fetch_sub_categories()">
+                                        <select class="form-control" name="categoryId" v-model="category_id" id="cat"
+                                            @change="fetch_sub_categories()">
                                             @change="fetch_tv_series">
                                             <option value="">Select Category</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->categoryTitle }}</option>
+                                                <option value="{{ $category->id }}" id="{{ $category->categoryTitle }}">
+                                                    {{ $category->categoryTitle }}</option>
                                             @endforeach
                                         </select>
                                         <span
-                                        class="text-danger">{{$errors->has('categoryId') ? $errors->first('categoryId') : ''}}</span>
+                                            class="text-danger">{{ $errors->has('categoryId') ? $errors->first('categoryId') : '' }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -47,17 +53,20 @@
                                     <div class="col-md-8">
                                         <select class="form-control" name="SubCategoryId">
                                             <option value="">Select Sub Category</option>
-                                            <option :value="row.id" v-for="row in sub_categories" v-html="row.subCategoryTitle"
-                                                style="max-width: 200px">
+                                            <option :value="row.id" v-for="row in sub_categories"
+                                                v-html="row.subCategoryTitle" style="max-width: 200px">
                                         </select>
                                         <span
-                                        class="text-danger">{{$errors->has('SubCategoryId') ? $errors->first('SubCategoryId') : ''}}</span>
+                                            class="text-danger">{{ $errors->has('SubCategoryId') ? $errors->first('SubCategoryId') : '' }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Title</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="productTitle">
+                                        <input type="text" class="form-control" name="productTitle" value=""
+                                            id="searchInput" oninput="getMoviesData()">
+                                        <ul id="dropdown" class="list-group position-relative"
+                                            style="list-style: none; z-index:10;"></ul>
                                         <span
                                             class="text-danger">{{ $errors->has('productTitle') ? $errors->first('productTitle') : '' }}</span>
                                     </div>
@@ -66,16 +75,16 @@
                                     <label for="inputEmail3"
                                         class="col-md-4 col-form-label text-md-right">Description</label>
                                     <div class="col-md-8">
-                                        <textarea class="form-control textarea" name="productDescription"
-                                            rows="8"></textarea>
+                                        <textarea class="form-control textarea" name="productDescription" id="description" rows="8"></textarea>
                                         <span
                                             class="text-danger">{{ $errors->has('productDescription') ? $errors->first('productDescription') : '' }}</span>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" id="image-file">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">File</label>
                                     <div class="col-md-8">
-                                        <input type="file" name="productFile" accept="productFile/*">
+                                        <img src="" alt="" id="image" class="img-thumbnail">
+                                        <input type="file" name="productFile" accept="productFile/*" id="productFile">
                                         <span
                                             class="text-danger">{{ $errors->has('productFile') ? $errors->first('productFile') : '' }}</span>
                                     </div>
@@ -91,7 +100,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Rating</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="rating">
+                                        <input type="text" class="form-control" name="rating" id="rating">
                                         <span
                                             class="text-danger">{{ $errors->has('rating') ? $errors->first('rating') : '' }}</span>
                                     </div>
@@ -99,7 +108,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Year</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="year">
+                                        <input type="text" class="form-control" name="year" id="year">
                                         <span
                                             class="text-danger">{{ $errors->has('year') ? $errors->first('year') : '' }}</span>
                                     </div>
@@ -134,6 +143,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 
@@ -142,13 +152,10 @@
         tinymce.init({
             selector: '.textarea'
         });
-
     </script>
-
 @endsection
 
 @push('js')
-
     <script src="{{ asset('vue-js/vue/dist/vue.js') }}"></script>
     <script src="{{ asset('vue-js/axios/dist/axios.min.js') }}"></script>
     <script src="{{ asset('vue-js/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
@@ -182,7 +189,7 @@
                                 function(response) {
 
                                     vm.sub_categories = response.data;
-                                    console.log(vm.sub_categories);
+                                    // console.log(vm.sub_categories);
 
                                 }).catch(function(error) {
 
@@ -210,7 +217,79 @@
                 size: 5
             });
         });
+    </script>
+    <script>
+        const apiKey = 'a7cf56b45650279486792f3f351721b5';
+        let movieCollection = [];
 
+
+        async function getMoviesData() {
+            const dropDown = document.getElementById('dropdown');
+            const searchInput = document.getElementById('searchInput');
+            const category = document.getElementById('cat');
+            const selectedText = category.options[category.selectedIndex].text;
+            const query = searchInput.value;
+
+
+            if (query.trim().length > 2) {
+
+                dropDown.style.display = "block";
+                const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+                const tvSeriesUrl = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}}&query=${query}`;
+
+                const response = await fetch(url);
+                const data = await response.json();
+                const {
+                    results
+                } = data;
+
+                movieCollection = results;
+                dropDown.innerHTML = '';
+                const branch = "Movie and tv series";
+                movieCollection.map((movie) => {
+                    const imageUrl = `
+                https: //image.tmdb.org/t/p/w500/${movie.poster_path}`;
+                    const alt = movie.title;
+                    const li = document.createElement('li');
+                    const image = document.createElement('img');
+                    image.src = imageUrl;
+                    image.alt = `${movie.title}`;
+                    image.style.width = "80px";
+                    image.style.height = "80px";
+                    image.classList.add('position-absolute', 'end-0');
+                    li.classList.add('list-group-item');
+                    li.style.cursor = 'pointer';
+                    li.setAttribute('id', `${movie.id}`)
+                    li.innerHTML = `${movie.title}`;
+                    li.appendChild(image);
+
+
+
+                    li.onclick = function() {
+                        const title = document.getElementById(`${movie.id}`);
+                        const searchInput = document.getElementById('searchInput');
+                        const description = document.getElementById('description');
+                        const image = document.getElementById('image');
+                        const productFile = document.getElementById('productFile');
+                        const year = document.getElementById('year');
+                        const rating = document.getElementById('rating');
+                        searchInput.value = title.innerText;
+                        description.value = movie.overview;
+                        year.value = movie.release_date;
+                        rating.value = movie.vote_average;
+                        console.log(movie);
+                        image.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                        dropDown.style.display = "none";
+                        productFile.style.display = "none";
+                    }
+                    dropDown.appendChild(li);
+                });
+
+            } else if (query.length == 0) {
+                dropDown.style.display = "none";
+            }
+
+
+        }
     </script>
 @endpush
-
