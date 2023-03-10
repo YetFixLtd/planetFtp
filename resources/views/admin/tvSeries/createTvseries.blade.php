@@ -121,6 +121,7 @@
             const {
                 results
             } = data;
+            console.log(results);
             tvSeriesCollection = results;
 
             dropDown.innerHTML = '';
