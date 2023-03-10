@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class SeasonController extends Controller
 {
-     // function __construct()
+    // function __construct()
     // {
     //     $this->middleware('permission:tvSeries-list|tvSeries-create|tvSeries-edit|tvSeries-delete', ['only' => ['index', 'show']]);
     //     $this->middleware('permission:tvSeries-create', ['only' => ['create', 'store']]);
@@ -30,29 +30,45 @@ class SeasonController extends Controller
 
     public function create()
     {
-        $subCategories = SubCategory::where('publicationStatus', 1)->where('type','tv_series')->get();
+        $subCategories = SubCategory::where('publicationStatus', 1)->where('type', 'tv_series')->get();
         $tvSeries = TvSeries::where('publicationStatus', 1)->get();
-        return view('admin.season.createSeason', compact('subCategories','tvSeries'));
+
+        return view('admin.season.createSeason', compact('subCategories', 'tvSeries'));
     }
 
     public function store(Request $request)
     {
+
+
         $this->validate($request, [
             'SubCategoryId' => 'required',
             'tvSeriesId' => 'required',
-            'seasonTitle' => 'required',
-            'seasonFile' => 'required',
+            'seasonTitle' => 'required|unique:seasons,seasonTitle',
+            'seasonFile' => '',
+            'season_api_id' => 'numeric',
             'publicationStatus' => 'required',
         ]);
+
         $season = new Season();
+
         $season->tvSeriesId = $request->tvSeriesId;
         $season->seasonTitle = $request->seasonTitle;
+
+
+        if ($request->hasFile('seasonFile')) {
+
             $seasonFile = $request->file('seasonFile');
             $fileName = $seasonFile->getClientOriginalName();
             $uploadPath = 'seasonFile/';
             $seasonFile->move($uploadPath, $fileName);
             $fileUrl = $uploadPath . $fileName;
-        $season->seasonFile =   $fileUrl;
+            $season->seasonFile =   $fileUrl;
+        } else {
+
+            $season->seasonFile = $request->imageUrl;
+            $season->season_api_id = $request->season_api_id;
+        }
+
         $season->publicationStatus = $request->publicationStatus;
 
         $season->save();
@@ -63,9 +79,9 @@ class SeasonController extends Controller
     public function show()
     {
         $season = DB::table('seasons')
-        ->join('tv_series', 'seasons.tvSeriesId', '=', 'tv_series.id')
-        ->select('seasons.*','tv_series.tvSeriesTitle')
-        ->get();
+            ->join('tv_series', 'seasons.tvSeriesId', '=', 'tv_series.id')
+            ->select('seasons.*', 'tv_series.tvSeriesTitle')
+            ->get();
         return view('admin.season.manageSeason', ['season' => $season]);
         //        return view('admin.category.table');
     }
@@ -78,7 +94,6 @@ class SeasonController extends Controller
             'season' => $season,
             'tvSeries' => $tvSeries,
         ]);
-
     }
 
     //    public function unPublishedCategoryInfo($id, $a){

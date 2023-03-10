@@ -84,6 +84,7 @@
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">File</label>
                                     <div class="col-md-8">
                                         <img src="" alt="" id="image" class="img-thumbnail">
+                                        <input type="hidden" name="imageUrl" value="" id="imageUrl">
                                         <input type="file" name="productFile" accept="productFile/*" id="productFile">
                                         <span
                                             class="text-danger">{{ $errors->has('productFile') ? $errors->first('productFile') : '' }}</span>
@@ -222,30 +223,41 @@
         const apiKey = 'a7cf56b45650279486792f3f351721b5';
         let movieCollection = [];
 
-
         async function getMoviesData() {
             const dropDown = document.getElementById('dropdown');
             const searchInput = document.getElementById('searchInput');
+            const imageUrlHidden = document.getElementById('imageUrl');
             const category = document.getElementById('cat');
+            const text = category.options[category.selectedIndex].text;
             const query = searchInput.value;
 
             if (query.trim().length > 2) {
-
                 dropDown.style.display = "block";
-                const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+                if (text === 'Movie') {
+                    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    const {
+                        results
+                    } = data;
+                    movieCollection = results;
 
-                const response = await fetch(url);
-                const data = await response.json();
-                const {
-                    results
-                } = data;
+                } else if (text === 'TV Series') {
+                    const url = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}`;
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    const {
+                        results
+                    } = data;
+                    movieCollection = results;
 
-                movieCollection = results;
+                }
+
                 dropDown.innerHTML = '';
 
                 movieCollection.map((movie) => {
-                    const imageUrl = `
-                https: //image.tmdb.org/t/p/w500/${movie.poster_path}`;
+                    const imageUrl =
+                        `https://image.tmdb.org/t/p/w500/${text ==='Movie' ? movie.poster_path : movie.poster_path}`;
                     const alt = movie.title;
                     const li = document.createElement('li');
                     const image = document.createElement('img');
@@ -253,14 +265,14 @@
                     image.alt = `${movie.title}`;
                     image.style.width = "80px";
                     image.style.height = "80px";
-                    image.classList.add('position-absolute', 'end-0');
+                    image.classList.add('position-absolute');
                     li.classList.add('list-group-item');
                     li.style.cursor = 'pointer';
-                    li.setAttribute('id', `${movie.id}`)
-                    li.innerHTML = `${movie.title}`;
+                    li.setAttribute('id', `${text ==='Movie' ? movie.id : movie.id}`)
+                    li.innerHTML = `${text ==='Movie' ? movie.title : movie.name}`;
                     li.appendChild(image);
 
-
+                    console.log(imageUrl);
 
                     li.onclick = function() {
                         const title = document.getElementById(`${movie.id}`);
@@ -272,10 +284,11 @@
                         const rating = document.getElementById('rating');
                         searchInput.value = title.innerText;
                         description.value = movie.overview;
-                        year.value = movie.release_date;
+                        year.value = `${text==='Movie'?movie.release_date:movie.first_air_date}`;
                         rating.value = movie.vote_average;
-                        console.log(movie);
-                        image.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                        image.src =
+                            `https://image.tmdb.org/t/p/w500/${text ==='Movie' ? movie.poster_path : movie.poster_path}`;
+                        imageUrlHidden.value = image.src;
                         dropDown.style.display = "none";
                         productFile.style.display = "none";
                     }

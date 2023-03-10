@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\SubCategory;
-use App\Models\TvSeries;
 use Session;
-use DB;
+use App\Models\Category;
+use App\Models\TvSeries;
+use App\Models\SubCategory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class TvSeriesController extends Controller
@@ -32,7 +32,7 @@ class TvSeriesController extends Controller
     public function create()
     {
         $categories = Category::where('publicationStatus', 1)->get();
-        $subCategories = SubCategory::where('publicationStatus', 1)->where('type','tv_series')->get();
+        $subCategories = SubCategory::where('publicationStatus', 1)->where('type', 'tv_series')->get();
         return view('admin.tvSeries.createTvseries', ['categories' => $categories, 'subCategories' => $subCategories]);
     }
 
@@ -41,23 +41,36 @@ class TvSeriesController extends Controller
         $this->validate($request, [
             'SubCategoryId' => 'required',
             'tvSeriesTitle' => 'required',
-            'tvSeriesFile' => 'required',
+            'tvSeriesFile' => '',
             'publicationStatus' => 'required',
+            'tv_series_id' => 'numeric'
         ]);
-        $tvSeries = new TvSeries();
-        $tvSeries->SubCategoryId = $request->SubCategoryId;
-        $tvSeries->tvSeriesTitle = $request->tvSeriesTitle;
 
-        $tvSeriesFile = $request->file('tvSeriesFile');
-        $fileName = $tvSeriesFile->getClientOriginalName();
-        $uploadPath = 'tvSeriesFile/';
-        $tvSeriesFile->move($uploadPath, $fileName);
-        $fileUrl = $uploadPath . $fileName;
 
-        $tvSeries->tvSeriesFile =  $fileUrl;
-        $tvSeries->publicationStatus = $request->publicationStatus;
-        //dd($tvSeries);
-        $tvSeries->save();
+        if ($request->hasFile('tvSeriesFile')) {
+            $tvSeries = new TvSeries();
+            $tvSeries->SubCategoryId = $request->SubCategoryId;
+            $tvSeries->tvSeriesTitle = $request->tvSeriesTitle;
+
+            $tvSeriesFile = $request->file('tvSeriesFile');
+            $fileName = $tvSeriesFile->getClientOriginalName();
+            $uploadPath = 'tvSeriesFile/';
+            $tvSeriesFile->move($uploadPath, $fileName);
+            $fileUrl = $uploadPath . $fileName;
+
+            $tvSeries->tvSeriesFile =  $fileUrl;
+            $tvSeries->publicationStatus = $request->publicationStatus;
+
+            $tvSeries->save();
+        } else {
+            $tvSeries = new TvSeries();
+            $tvSeries->SubCategoryId = $request->SubCategoryId;
+            $tvSeries->tvSeriesTitle = $request->tvSeriesTitle;
+            $tvSeries->tv_series_api_id = $request->tv_series_id;
+            $tvSeries->tvSeriesFile =  $request->imageUrl;
+            $tvSeries->publicationStatus = $request->publicationStatus;
+            $tvSeries->save();
+        }
 
         return redirect()->route('/tvSeriesAdd')->with('message', 'TV Series info saved successfully');
     }
@@ -65,9 +78,9 @@ class TvSeriesController extends Controller
     public function show()
     {
         $tvSeriess = DB::table('tv_series')
-        ->join('sub_categories', 'tv_series.SubCategoryId', '=', 'sub_categories.id')
-        ->select('tv_series.*','sub_categories.subCategoryTitle')
-        ->get();
+            ->join('sub_categories', 'tv_series.SubCategoryId', '=', 'sub_categories.id')
+            ->select('tv_series.*', 'sub_categories.subCategoryTitle')
+            ->get();
         return view('admin.tvSeries.manageTvseries', ['tvSeriess' => $tvSeriess]);
         //        return view('admin.category.table');
     }
@@ -80,7 +93,6 @@ class TvSeriesController extends Controller
             'tvSeries' => $tvSeries,
             'subCategories' => $subCategories,
         ]);
-
     }
 
     //    public function unPublishedCategoryInfo($id, $a){

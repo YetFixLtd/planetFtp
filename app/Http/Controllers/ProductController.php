@@ -45,13 +45,21 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->productBasicInfoValidate($request);
-        $productFile = $request->file('productFile');
-        $fileName = $productFile->getClientOriginalName();
-        $uploadPath = 'productFile/';
-        $productFile->move($uploadPath, $fileName);
-        $fileUrl = $uploadPath . $fileName;
-        $this->saveProductInfo($request, $fileUrl);
-        return redirect()->route('/productAdd')->with('message', 'Item info saved successfully');
+
+
+        if ($request->hasFile('productFile')) {
+            $productFile = $request->file('productFile');
+            $fileName = $productFile->getClientOriginalName();
+            $uploadPath = 'productFile/';
+            $productFile->move($uploadPath, $fileName);
+            $fileUrl = $uploadPath . $fileName;
+            $this->saveProductInfo($request, $fileUrl);
+            return redirect()->route('/productAdd')->with('message', 'Item info saved successfully');
+        } else {
+            $fileUrl = $request->imageUrl;
+            $this->saveProductInfo($request, $fileUrl);
+            return redirect()->route('/productAdd')->with('message', 'Item info saved successfully');
+        }
     }
 
     protected function saveProductInfo($request, $fileUrl)
