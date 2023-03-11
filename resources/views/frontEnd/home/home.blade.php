@@ -21,12 +21,12 @@
                                 ->select('products.*')
                                 ->orderBy('products.id', 'DESC')
                                 ->where('categoryId', 1)
-                                ->paginate(12);
+                                ->paginate(50);
 
                             $tvSeries = DB::table('tv_series')
                                 ->select('tv_series.*')
                                 ->orderBy('tv_series.id', 'DESC')
-                                ->limit(12)
+                                ->limit(50)
                                 ->get();
                         @endphp
 
@@ -78,7 +78,7 @@
 
                     </div>
 
-                    <div style="margin-bottom:50px;">
+                    {{-- <div style="margin-bottom:50px;">
                         <h1 class="text-center h1" style="letter-spacing: 1.5px;font-weight:bold;">Recent Games</h1>
                     </div>
                     <hr/>
@@ -110,10 +110,10 @@
                         @empty
                         @endforelse
 
-                    </div>
+                    </div> --}}
 
 
-                    <div style="margin-bottom:50px;">
+                    {{-- <div style="margin-bottom:50px;">
                         <h1 class="text-center h1" style="letter-spacing: 1.5px;font-weight:bold;">Recent Softwares</h1>
                     </div>
                     <hr/>
@@ -145,7 +145,7 @@
                         @empty
                         @endforelse
 
-                    </div>
+                    </div> --}}
 
 
                 </div>
