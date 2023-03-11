@@ -39,40 +39,44 @@ class SeasonController extends Controller
     public function store(Request $request)
     {
 
-
         $this->validate($request, [
             'SubCategoryId' => 'required',
             'tvSeriesId' => 'required',
-            'seasonTitle' => 'required|unique:seasons,seasonTitle',
+            'seasonTitle' => 'required',
             'seasonFile' => '',
-            'season_api_id' => 'numeric',
+            'seasonNumber' => 'numeric',
+            // 'tv_id' => 'numeric',
             'publicationStatus' => 'required',
         ]);
 
-        $season = new Season();
-
-        $season->tvSeriesId = $request->tvSeriesId;
-        $season->seasonTitle = $request->seasonTitle;
-
-
+        //dd($request->all());
         if ($request->hasFile('seasonFile')) {
 
+            $season = new Season();
+            $season->tvSeriesId = $request->tvSeriesId;
+            $season->seasonTitle = $request->seasonTitle;
             $seasonFile = $request->file('seasonFile');
             $fileName = $seasonFile->getClientOriginalName();
             $uploadPath = 'seasonFile/';
             $seasonFile->move($uploadPath, $fileName);
             $fileUrl = $uploadPath . $fileName;
             $season->seasonFile =   $fileUrl;
+            $season->publicationStatus = $request->publicationStatus;
+            $season->save();
+            return redirect()->route('/seasonAdd')->with('message', 'Season info saved successfully');
         } else {
 
+            $season = new Season();
+            $season->tvSeriesId = $request->tvSeriesId;
+            $season->seasonTitle = $request->seasonTitle;
             $season->seasonFile = $request->imageUrl;
-            $season->season_api_id = $request->season_api_id;
+            $season->seasonNumber = $request->season_number;
+            $season->tv_id = $request->tv_id;
+            $season->publicationStatus = $request->publicationStatus;
+
+            $season->save();
+            return redirect()->route('/seasonAdd')->with('message', 'Season info saved successfully');
         }
-
-        $season->publicationStatus = $request->publicationStatus;
-
-        $season->save();
-        return redirect()->route('/seasonAdd')->with('message', 'Season info saved successfully');
     }
 
 

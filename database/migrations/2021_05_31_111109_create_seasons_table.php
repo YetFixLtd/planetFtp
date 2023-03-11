@@ -19,6 +19,8 @@ class CreateSeasonsTable extends Migration
             $table->text('seasonTitle');
             $table->text('seasonFile');
             $table->tinyInteger('publicationStatus');
+            $table->integer('seasonNumber')->nullable();
+            $table->integer('tv_id')->nullable();
             $table->timestamps();
         });
     }

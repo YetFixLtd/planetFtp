@@ -59,6 +59,7 @@
                                             <option :value="row.id" v-for="row in tv_series"
                                                 v-html="row.tvSeriesTitle" style="max-width: 200px">
                                             </option>
+
                                         </select>
                                         <span
                                             class="text-danger">{{ $errors->has('tvSeriesId') ? $errors->first('tvSeriesId') : '' }}</span>
@@ -67,11 +68,14 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Season</label>
                                     <div class="col-md-8">
-                                        <select name="seasonId" id="seasonId" class="form-control" v-model="season_id">
+                                        <select name="seasonId" id="seasonId" class="form-control" v-model="season_id"
+                                            onchange="getTvSeasonEpisode()">
                                             <option value="">Select one</option>
                                             <option :value="row.id" v-for="row in seasons" v-html="row.seasonTitle"
-                                                style="max-width: 200px">
+                                                style="max-width: 200px" :custom-attribute="row.tv_id"
+                                                :seson-number="row.seasonNumber">
                                             </option>
+
 
                                         </select>
                                         <span
@@ -83,7 +87,11 @@
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Episode
                                         Title</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="episodeTitle">
+
+                                        <input type="hidden" name="imageUrl" value="" id="imageUrl">
+                                        <input type="text" class="form-control" name="episodeTitle" id="searchInput">
+                                        <ul id="dropdown" class="list-group position-relative"
+                                            style="list-style: none; z-index:10;"></ul>
                                         <span
                                             class="text-danger">{{ $errors->has('episodeTitle') ? $errors->first('episodeTitle') : '' }}</span>
                                     </div>
@@ -92,7 +100,7 @@
                                     <label for="inputEmail3"
                                         class="col-md-4 col-form-label text-md-right">Description</label>
                                     <div class="col-md-8">
-                                        <textarea class="form-control textarea" name="episodeDescription" rows="8"></textarea>
+                                        <textarea class="form-control textarea" name="episodeDescription" rows="8" id="description"></textarea>
                                         <span
                                             class="text-danger">{{ $errors->has('episodeDescription') ? $errors->first('episodeDescription') : '' }}</span>
                                     </div>
@@ -100,7 +108,9 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">File</label>
                                     <div class="col-md-8">
-                                        <input type="file" name="episodeFile" accept="episodeFile/*">
+                                        <img src="" alt="" id="showImage" class="img-thumbnail">
+                                        <input type="hidden" name="episodeFile" value="" id="EpisodeImage">
+                                        <input type="file" name="episodeFile" accept="episodeFile/*" id="productFile">
                                         <span
                                             class="text-danger">{{ $errors->has('episodeFile') ? $errors->first('episodeFile') : '' }}</span>
                                     </div>
@@ -116,7 +126,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Rating</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="rating">
+                                        <input type="text" class="form-control" name="rating" id="rating">
                                         <span
                                             class="text-danger">{{ $errors->has('rating') ? $errors->first('rating') : '' }}</span>
                                     </div>
@@ -124,7 +134,7 @@
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-md-4 col-form-label text-md-right">Year</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="year">
+                                        <input type="text" class="form-control" name="year" id="year">
                                         <span
                                             class="text-danger">{{ $errors->has('year') ? $errors->first('year') : '' }}</span>
                                     </div>
@@ -269,5 +279,83 @@
                 size: 5
             });
         });
+    </script>
+
+
+    <script>
+        const apiKey = 'a7cf56b45650279486792f3f351721b5';
+
+
+
+        async function getTvSeasonEpisode() {
+            const select = document.getElementById('seasonId');
+            const dropDown = document.getElementById('dropdown');
+            const imageUrlHidden = document.getElementById('imageUrl');
+            const selectedOption = select.options[select.selectedIndex];
+            const title = document.getElementById('searchInput');
+            const image = document.getElementById('image');
+            const tv_id = await selectedOption.getAttribute('custom-attribute');
+            const season_number = await selectedOption.getAttribute('seson-number');
+            const url =
+                `https://api.themoviedb.org/3/tv/${tv_id}/season/${season_number}?api_key=${apiKey}&language=en-US`;
+            const response = await fetch(url);
+            const data = await response.json();
+            const {
+                episodes
+            } = data;
+            console.log(episodes);
+
+            dropDown.innerHTML = '';
+
+            episodes.map((episode) => {
+                const imageUrl = `https://image.tmdb.org/t/p/w500/${ episode.still_path}`;
+                const alt = season.name;
+                const li = document.createElement('li');
+                const image = document.createElement('img');
+                image.src = imageUrl;
+                image.alt = `${episode.name}`;
+                image.style.width = "80px";
+                image.style.height = "80px";
+                image.classList.add('position-absolute');
+                li.classList.add('list-group-item');
+                li.style.cursor = 'pointer';
+                li.setAttribute('id', `${ episode.id}`);
+                li.innerHTML = `${ episode.name}`;
+                li.appendChild(image);
+
+                li.onclick = function() {
+                    const title = document.getElementById(`${episode.id}`);
+                    const searchInput = document.getElementById('searchInput');
+                    const description = document.getElementById('description');
+                    const image = document.getElementById('EpisodeImage');
+                    const showImage = document.getElementById('showImage');
+                    const productFile = document.getElementById('productFile');
+                    const rating = document.getElementById('rating');
+                    const year = document.getElementById('year');
+
+                    searchInput.value = title.innerText;
+                    image.src =
+                        `https://image.tmdb.org/t/p/w500/${episode.still_path }`;
+                    imageUrlHidden.value = image.src;
+                    dropDown.style.display = "none";
+                    productFile.style.display = "none";
+                    productFile.file = image.src;
+                    rating.value = episode.vote_average;
+                    year.value = episode.air_date;
+                    description.value = episode.overview;
+                    image.value = imageUrl;
+                    showImage.src = imageUrl;
+                    showImage.alt = episode.name;
+                    console.log(imageUrl);
+
+
+                }
+                dropDown.appendChild(li);
+            });
+            searchInput.addEventListener("keyup", function() {
+                dropDown.style.display = "none";
+            });
+
+        }
     </script>
 @endpush

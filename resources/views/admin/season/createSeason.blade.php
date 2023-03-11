@@ -3,6 +3,16 @@
 @section('title')
     Add Season
 @endsection
+{{-- error --}}
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @section('mainContent')
     <div class="container-fluid">
@@ -81,8 +91,11 @@
                                     <div class="col-md-8">
                                         <img src="" alt="" id="image" class="img-thumbnail">
                                         <input type="hidden" name="imageUrl" value="" id="imageUrl">
-                                        <input type="number" name="season_api_id" style="display: none;"
-                                            id="season_api_id">
+                                        <input type="number" name="season_number" style="display: none;"
+                                            id="season_number">
+                                        <input type="number" name="tv_id" style="display: none;" id="tv_id">
+                                        <input type="number" name="tv_series_id" style="display: none;" id="season_number">
+
                                         <input type="file" name="seasonFile" accept="seasonFile/*" id="productFile">
                                         <span
                                             class="text-danger">{{ $errors->has('seasonFile') ? $errors->first('seasonFile') : '' }}</span>
@@ -208,7 +221,7 @@
             const imageUrlHidden = document.getElementById('imageUrl');
             const selectedOption = select.options[select.selectedIndex];
             const tv_id = selectedOption.getAttribute('custom-attribute');
-            const tvSeasonApiId = document.getElementById('season_api_id');
+            const season_number = document.getElementById('season_number');
             const title = document.getElementById('searchInput');
             const url = `https://api.themoviedb.org/3/tv/${tv_id}?api_key=${apiKey}&language=en-US`;
             const response = await fetch(url);
@@ -217,7 +230,6 @@
                 seasons
             } = data;
             dropDown.innerHTML = '';
-            console.log(seasons);
 
             seasons.map((season) => {
                 const imageUrl =
@@ -241,9 +253,11 @@
                     const searchInput = document.getElementById('searchInput');
                     const image = document.getElementById('image');
                     const productFile = document.getElementById('productFile');
+                    const tv_series_id = document.getElementById('tv_id');
 
                     searchInput.value = title.innerText;
-                    tvSeasonApiId.value = season.id;
+                    season_number.value = season.season_number;
+                    tv_series_id.value = tv_id;
 
                     image.src =
                         `https://image.tmdb.org/t/p/w500/${season.poster_path }`;

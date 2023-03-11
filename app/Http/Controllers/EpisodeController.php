@@ -22,10 +22,10 @@ class EpisodeController extends Controller
 
     public function create()
     {
-        $subCategories = SubCategory::where('publicationStatus', 1)->where('type','tv_series')->get();
+        $subCategories = SubCategory::where('publicationStatus', 1)->where('type', 'tv_series')->get();
         $tvSeries = TvSeries::where('publicationStatus', 1)->get();
         $season = Season::where('publicationStatus', 1)->get();
-        return view('admin.episode.createEpisode', ['tvSeries' => $tvSeries, 'season' => $season,'subCategories'=>$subCategories]);
+        return view('admin.episode.createEpisode', ['tvSeries' => $tvSeries, 'season' => $season, 'subCategories' => $subCategories]);
     }
 
     protected function seasonBasicInfoValidate($request)
@@ -36,7 +36,7 @@ class EpisodeController extends Controller
             'seasonId' => 'required',
             'episodeTitle' => 'required',
             'episodeDescription' => 'required',
-            'episodeFile' => 'required',
+            'episodeFile' => '',
             'episodeUrl' => 'required',
             'rating' => 'required',
             'year' => 'required',
@@ -47,12 +47,19 @@ class EpisodeController extends Controller
     public function store(Request $request)
     {
         $this->seasonBasicInfoValidate($request);
-        $episodeFile = $request->file('episodeFile');
-        $fileName = $episodeFile->getClientOriginalName();
-        $uploadPath = 'episodeFile/';
-        $episodeFile->move($uploadPath, $fileName);
-        $fileUrl = $uploadPath . $fileName;
-        $this->saveEpisodeInfo($request, $fileUrl);
+        if ($request->hasFile('episodeFile')) {
+            $episodeFile = $request->file('episodeFile');
+            $fileName = $episodeFile->getClientOriginalName();
+            $uploadPath = 'episodeFile/';
+            $episodeFile->move($uploadPath, $fileName);
+            $fileUrl = $uploadPath . $fileName;
+            $this->saveEpisodeInfo($request, $fileUrl);
+        } else {
+            //dd($request->all());
+            $fileUrl = $request->episodeFile;
+            $this->saveEpisodeInfo($request, $fileUrl);
+        }
+
         return redirect()->route('/episodeAdd')->with('message', 'Episode info saved successfully');
     }
 

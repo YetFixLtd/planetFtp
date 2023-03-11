@@ -43,7 +43,7 @@ class TvSeriesController extends Controller
             'tvSeriesTitle' => 'required',
             'tvSeriesFile' => '',
             'publicationStatus' => 'required',
-            'tv_series_id' => 'numeric'
+            // 'tv_series_id' => 'numeric'
         ]);
 
 

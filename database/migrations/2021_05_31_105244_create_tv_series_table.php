@@ -18,6 +18,7 @@ class CreateTvSeriesTable extends Migration
             $table->integer('SubCategoryId');
             $table->text('tvSeriesTitle');
             $table->tinyInteger('publicationStatus');
+            $table->integer('tv_id')->nullable();
             $table->timestamps();
         });
     }

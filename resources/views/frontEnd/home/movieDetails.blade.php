@@ -38,7 +38,7 @@
                         <div class="row" style="">
                             <div class="col-sm-6 col-md-4 vcenter">
                                 <img style="width: 100%; height: 450px; margin: auto;"
-                                    src="{{ asset('/') }}{{ $children->productFile }}" />
+                                    src="{{ asset($children->productFile) }}" />
 
                             </div>
                             <div class="col-sm-6 col-md-8 vcenter">
@@ -128,7 +128,7 @@
                                             <div class="post-wrapper">
                                                 <a class="image" onclick="UpdateHits('23613','visit')"
                                                     href="{{ route('movie', ['id' => $reletedPro->id]) }}"><img
-                                                        src="{{ asset('/') }}{{ $reletedPro->productFile }}"
+                                                        src="{{ asset($reletedPro->productFile) }}"
                                                         alt="{{ $reletedPro->productTitle }}"
                                                         style="width: 100%; height: 100%;" /></a>
                                                 <div class="block">
