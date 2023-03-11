@@ -15,7 +15,7 @@ class CreateLinksTable extends Migration
     {
         Schema::create('links', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['LiveTv', 'Index'])->nullable();
+            $table->enum('type', ['LiveTv', 'Index', 'FTP-Partner'])->nullable();
             $table->string('url')->nullable();
             $table->enum('status', ['publish', 'unPublish'])->nullable();
             $table->timestamps();

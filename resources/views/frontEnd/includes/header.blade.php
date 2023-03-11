@@ -161,9 +161,23 @@
                 </ul>
             </li> --}}
 
+
             <li class="dropdown">
-                <a class="dropdown-toggle" href="{{ $index->url ?? '' }}">Index</a>
+                <a class="dropdown-toggle" href="" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false">Links<i
+                        class="fa fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="{{ $index->url ?? '' }}">Index</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="{{ $partner->url ?? '' }}">Partner FTP</a>
+                    </li>
+                </ul>
             </li>
+
+
+
         </ul>
 
 

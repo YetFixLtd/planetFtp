@@ -39,10 +39,12 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function($view) {
             $tv = Link::where('type', 'LiveTv')->first();
             $index = Link::where('type', 'Index')->first();
+            $partner = Link::where('type', 'FTP-Partner')->first();
 
             $view->with([
                 'tv' => $tv,
                 'index' => $index,
+                'partner' => $partner,
             ]);
         });
 

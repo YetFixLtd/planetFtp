@@ -33,6 +33,7 @@
                                             <option value="">Select type</option>
                                             <option value="LiveTv">Live TV</option>
                                             <option value="Index">Index</option>
+                                            <option value="FTP-Partner">Partner</option>
                                         </select>
                                         <span
                                             class="text-danger">{{ $errors->has('type') ? $errors->first('type') : '' }}</span>
