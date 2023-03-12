@@ -22,7 +22,7 @@
                                 ->orderBy('products.id', 'DESC')
                                 ->where('categoryId', 1)
                                 ->paginate(50);
-
+                            
                             $tvSeries = DB::table('tv_series')
                                 ->select('tv_series.*')
                                 ->orderBy('tv_series.id', 'DESC')
@@ -31,8 +31,8 @@
                         @endphp
 
                         @forelse($products as $product)
-                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
-                                data-wow-duration="0.7s" data-wow-offset="0">
+                            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5" data-wow-duration="1s"
+                                data-wow-offset="0" id="movieContainer">
 
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
@@ -63,7 +63,7 @@
 
                         @foreach ($tvSeries as $tv)
                             <div class="post post-height hover-img-scale wow fadeInDown" data-rating="5"
-                                data-wow-duration="0.7s" data-wow-offset="0">
+                                data-wow-duration="1s" data-wow-offset="0">
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('subCatTvSeason', ['id' => $tv->id]) }}"><img
                                             src="{{ asset($tv->tvSeriesFile) }}" alt="Rifle Ganj"
@@ -156,3 +156,37 @@
 
     </main>
 @endsection
+
+{{-- <script>
+    let moviesCollection = [];
+    let tvSeriesCollection = [];
+
+    async function getMovieAndTvSeries() {
+        const sources =
+            `http://127.0.0.1:8000/api/recentMoviesAndTvSeries`;
+
+        const response = await fetch(sources);
+        const data = await response.json();
+        const {
+            movies,
+            tvSeries
+        } = data;
+        const movieContainer = document.getElementById('movieContainer');
+        movieContainer.innerHTML = `${movies.map(movie =>
+            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
+                data-wow-duration="0.7s" data-wow-offset="0">
+                <div class="post-wrapper">
+                    <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
+                            src="{{ asset($product->productFile) }}" alt="Rifle Ganj"
+                            style="width: 300px; height: 450px; margin: auto;" /></a>
+                    <div class="block">
+
+                        <div class="title">${movie.productTitle}</div>
+                    </div>
+                </div>
+            </div>
+        ).join('')}`;
+
+    }
+    getMovieAndTvSeries();
+</script> --}}
