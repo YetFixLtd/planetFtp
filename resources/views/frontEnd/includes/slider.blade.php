@@ -1,4 +1,4 @@
-<div class="slider multipost">
+<div class="slider multipost" style="margin-top:56.5px;">
     <div class="owl-carousel owl-theme" id="post-slider-multipost">
 
         @php

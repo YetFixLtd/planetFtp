@@ -67,7 +67,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->categoryId = $request->categoryId;
         $product->SubCategoryId = $request->SubCategoryId;
-        $product->productTitle = $request->productTitle;
+        $product->productTitle = ucfirst($request->productTitle);
         $product->productDescription = $request->productDescription;
         $product->productFile = $fileUrl;
         $product->productUrl = $request->productUrl;

@@ -69,8 +69,8 @@ class EpisodeController extends Controller
         $episode->SubCategoryId = $request->SubCategoryId;
         $episode->tvSeriesId = $request->tvSeriesId;
         $episode->seasonId = $request->seasonId;
-        $episode->episodeTitle = $request->episodeTitle;
-        $episode->episodeDescription = $request->episodeDescription;
+        $episode->episodeTitle = ucfirst($request->episodeTitle);
+        $episode->episodeDescription = ucfirst($request->episodeDescription);
         $episode->episodeFile = $fileUrl;
         $episode->episodeUrl = $request->episodeUrl;
         $episode->rating = $request->rating;

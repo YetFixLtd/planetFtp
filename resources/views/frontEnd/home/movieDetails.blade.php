@@ -52,7 +52,7 @@
                                         </tr>
                                         <tr>
                                             <td>Year:</td>
-                                            <td>{{ $children->year }}</td>
+                                            <td><?php echo date('Y', strtotime($children->year)); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Released:</td>

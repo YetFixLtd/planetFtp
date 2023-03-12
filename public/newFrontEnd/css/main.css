@@ -14839,7 +14839,8 @@ display:none
 .news-container .news-content .post.post-gallery .post-wrapper .images-gallery .owl-carousel .owl-stage-outer {
 max-height:175px;
 -webkit-transition:max-height .2s ease-in;
-transition:max-height .2s ease-in
+transition:max-height .2s ease-in;
+
 }
 
 .news-container .news-content .post.post-gallery .post-wrapper .images-gallery .owl-carousel .owl-stage-outer .owl-item .img {
@@ -14853,7 +14854,8 @@ transform:scale(1);
 -webkit-transition:1s -webkit-transform;
 transition:1s -webkit-transform;
 transition:1s transform;
-transition:1s transform,1s -webkit-transform
+transition:1s transform,1s -webkit-transform;
+
 }
 
 .news-container .news-content .post.post-gallery .post-wrapper .images-gallery .owl-carousel .owl-thumbs-body {
@@ -15492,7 +15494,8 @@ padding:0 50px
 }
 
 .news-container .news-content .post.post--width2.post-gallery .post-wrapper .images-gallery .owl-carousel .owl-stage-outer {
-max-height:420px
+max-height:420px;
+
 }
 
 .news-container .news-content .post.post--width2.post-gallery .post-wrapper .images-gallery .owl-carousel .owl-thumbs-body {
@@ -22010,7 +22013,8 @@ padding:15px 15px 0
 }
 
 .news-container .news-content .post.post-gallery .post-wrapper .owl-carousel .owl-stage-outer {
-max-height:100%!important
+max-height:100%!important;
+
 }
 
 .news-container .news-content .post.post-gallery .post-wrapper .owl-carousel .owl-nav .owl-prev,.news-container .news-content .post.post-gallery .post-wrapper .owl-carousel .owl-nav .owl-next {
@@ -23211,7 +23215,17 @@ color:#35276d
 }
 
 body.theme-color-purple .main-wrapper header .nav a {
-color:#35276d
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 1.625;
+    letter-spacing: 0.1em;
+}
+body.theme-color-purple .main-wrapper header .nav a:hover {
+    -webkit-text-decoration-line: underline;
+            text-decoration-line: underline;
+    -webkit-text-decoration-color: #e2e8f0;
+            text-decoration-color: #e2e8f0;
+    text-underline-offset: 8px;
 }
 
 body.theme-color-purple .main-wrapper header .nav .dropdown-menu a:before {
@@ -24540,7 +24554,12 @@ background-color:#e81123!important
   color: #ffffff;
 }
 #navbar {
-    background-color: #ff91c6;
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #c084fc;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: rgb(192 132 252 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #c084fc, var(--tw-gradient-to);
+  --tw-gradient-to: #a855f7;
 }
 #psearch {
     background-color: #8bf1f1;

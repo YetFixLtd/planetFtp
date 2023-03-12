@@ -54,7 +54,7 @@ class SeasonController extends Controller
 
             $season = new Season();
             $season->tvSeriesId = $request->tvSeriesId;
-            $season->seasonTitle = $request->seasonTitle;
+            $season->seasonTitle = ucfirst($request->seasonTitle);
             $seasonFile = $request->file('seasonFile');
             $fileName = $seasonFile->getClientOriginalName();
             $uploadPath = 'seasonFile/';
@@ -68,7 +68,7 @@ class SeasonController extends Controller
 
             $season = new Season();
             $season->tvSeriesId = $request->tvSeriesId;
-            $season->seasonTitle = $request->seasonTitle;
+            $season->seasonTitle = ucfirst($request->seasonTitle);
             $season->seasonFile = $request->imageUrl;
             $season->seasonNumber = $request->season_number;
             $season->tv_id = $request->tv_id;

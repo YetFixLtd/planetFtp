@@ -50,7 +50,7 @@ class TvSeriesController extends Controller
         if ($request->hasFile('tvSeriesFile')) {
             $tvSeries = new TvSeries();
             $tvSeries->SubCategoryId = $request->SubCategoryId;
-            $tvSeries->tvSeriesTitle = $request->tvSeriesTitle;
+            $tvSeries->tvSeriesTitle = ucfirst($request->tvSeriesTitle);
 
             $tvSeriesFile = $request->file('tvSeriesFile');
             $fileName = $tvSeriesFile->getClientOriginalName();
@@ -65,7 +65,7 @@ class TvSeriesController extends Controller
         } else {
             $tvSeries = new TvSeries();
             $tvSeries->SubCategoryId = $request->SubCategoryId;
-            $tvSeries->tvSeriesTitle = $request->tvSeriesTitle;
+            $tvSeries->tvSeriesTitle = ucfirst($request->tvSeriesTitle);
             $tvSeries->tv_series_api_id = $request->tv_series_id;
             $tvSeries->tvSeriesFile =  $request->imageUrl;
             $tvSeries->publicationStatus = $request->publicationStatus;
@@ -120,7 +120,7 @@ class TvSeriesController extends Controller
     {
         $tvSeries = TvSeries::find($request->id);
         $tvSeries->SubCategoryId = $request->SubCategoryId;
-        $tvSeries->tvSeriesTitle = $request->tvSeriesTitle;
+        $tvSeries->tvSeriesTitle = ucfirst($request->tvSeriesTitle);
 
         $tvSeries->tvSeriesFile = $fileUrl;
 
