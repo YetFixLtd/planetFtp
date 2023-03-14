@@ -12,7 +12,7 @@
                 </h1>
                 <h4 style="letter-spacing: 1.2px;font-weight:600">@php
                     if (count($children) === 0) {
-                        echo ' Thre is no Series Available';
+                        echo ' There is no Series Available';
                     }
                 @endphp</h4>
             </div>
@@ -26,7 +26,7 @@
                                 data-publish-date="18.04.2021" data-wow-duration="0.7s" data-wow-offset="0">
                                 <div class="post-wrapper">
                                     <a class="image" href="{{ url('subCatTvSeason', ['id' => $child->id]) }}"><img
-                                            src="{{ '/' }}{{ $child->tvSeriesFile }}" alt="Rifle Ganj"
+                                            src="{{ asset($child->tvSeriesFile) }}" alt="Rifle Ganj"
                                             style="width: 100%; height: 100%;" /></a>
                                     <div class="block">
 

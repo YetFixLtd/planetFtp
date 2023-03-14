@@ -14,7 +14,7 @@
                     {{ $sub_category->subCategoryTitle }}</h3>
                 <h4 style="letter-spacing: 1.2px;font-weight:600">@php
                     if (count($children) === 0) {
-                        echo ' Thre is no Movies Available';
+                        echo ' There is no Movies Available';
                     }
                 @endphp</h4>
             </div>

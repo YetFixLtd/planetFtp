@@ -9,8 +9,8 @@
         @include('frontEnd.includes.slider')
 
         <div class="news-container">
-            <div style="margin-bottom:50px;">
-                <h1 class="text-center h1" style="letter-spacing: 1.5px;font-weight:bold;">Recent Movies</h1>
+            <div style="margin-bottom:10px;">
+                <h1 class="text-center h1" style="letter-spacing: 0.1em;font-weight:600;">Recent Movies</h1>
             </div>
             <hr />
             <div class="tab-content news-content clearfix">
@@ -21,12 +21,12 @@
                                 ->select('products.*')
                                 ->orderBy('products.id', 'DESC')
                                 ->where('categoryId', 1)
-                                ->paginate(50);
+                                ->paginate(54);
                             
                             $tvSeries = DB::table('tv_series')
                                 ->select('tv_series.*')
                                 ->orderBy('tv_series.id', 'DESC')
-                                ->limit(50)
+                                ->limit(54)
                                 ->get();
                         @endphp
 
@@ -50,8 +50,8 @@
 
                     </div>
 
-                    <div style="margin-bottom:50px;">
-                        <h1 class="text-center h1" style="letter-spacing: 1.5px;font-weight:bold;">
+                    <div style="margin-bottom:40px;">
+                        <h1 class="text-center h1" style="letter-spacing: 0.1em;font-weight:bold; margin-top:10px;">
                             @php
                                 if (count($tvSeries) > 0) {
                                     echo 'Recent Tv Series';
@@ -155,38 +155,38 @@
 
 
     </main>
+    <script>
+        let moviesCollection = [];
+        let tvSeriesCollection = [];
+
+        async function getMovieAndTvSeries() {
+            const sources =
+                `http://127.0.0.1:8000/api/recentMoviesAndTvSeries`;
+
+            const response = await fetch(sources);
+            const data = await response.json();
+            const {
+                movies,
+                tvSeries
+            } = data;
+            console.log(movies);
+            // const movieContainer = document.getElementById('movieContainer');
+            // movieContainer.innerHTML = `${movies.map(movie =>
+        //     <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
+        //         data-wow-duration="0.7s" data-wow-offset="0">
+        //         <div class="post-wrapper">
+        //             <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
+        //                     src="{{ asset($product->productFile) }}" alt="Rifle Ganj"
+        //                     style="width: 300px; height: 450px; margin: auto;" /></a>
+        //             <div class="block">
+
+        //                 <div class="title">${movie.productTitle}</div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // ).join('')}`;
+
+        }
+        getMovieAndTvSeries();
+    </script>
 @endsection
-
-{{-- <script>
-    let moviesCollection = [];
-    let tvSeriesCollection = [];
-
-    async function getMovieAndTvSeries() {
-        const sources =
-            `http://127.0.0.1:8000/api/recentMoviesAndTvSeries`;
-
-        const response = await fetch(sources);
-        const data = await response.json();
-        const {
-            movies,
-            tvSeries
-        } = data;
-        const movieContainer = document.getElementById('movieContainer');
-        movieContainer.innerHTML = `${movies.map(movie =>
-            <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5"
-                data-wow-duration="0.7s" data-wow-offset="0">
-                <div class="post-wrapper">
-                    <a class="image" href="{{ url('/movie/' . $product->id) }}"><img
-                            src="{{ asset($product->productFile) }}" alt="Rifle Ganj"
-                            style="width: 300px; height: 450px; margin: auto;" /></a>
-                    <div class="block">
-
-                        <div class="title">${movie.productTitle}</div>
-                    </div>
-                </div>
-            </div>
-        ).join('')}`;
-
-    }
-    getMovieAndTvSeries();
-</script> --}}

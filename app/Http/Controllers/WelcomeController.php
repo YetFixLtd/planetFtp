@@ -240,7 +240,7 @@ class WelcomeController extends Controller
             ->join('categories', 'products.categoryId', '=', 'categories.id')
             ->join('sub_categories', 'products.SubCategoryId', '=', 'sub_categories.id')
             ->select('products.*', 'categories.categoryTitle', 'sub_categories.subCategoryTitle')
-            ->where('products.SubCategoryId', '=', $id)->paginate(50);
+            ->where('products.SubCategoryId', '=', $id)->paginate(54);
         // ->get();
 
         return view('frontEnd.menuPage.page', compact('children', 'sub_category', 'all_sub_categories'));
