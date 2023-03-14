@@ -169,10 +169,13 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="{{ $index->url ?? '' }}">Index</a>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" href="{{ $partner->url ?? '' }}">Partner FTP</a>
-                        {{-- <a class="dropdown-toggle" href="#">Partner FTP</a> --}}
-                    </li>
+                    @forelse ($partner as $item)
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="{{ $item->url ?? '' }}">Partner FTP {{ $loop->iteration }}</a>
+                        </li>
+                    @empty
+                    @endforelse
+
                 </ul>
             </li>
 
