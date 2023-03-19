@@ -46,8 +46,8 @@
     </main>
 
 
-    <main>
-        <div class="news-container" style="margin-top:5px;">
+    <main style="margin-top:-65px;">
+        <div class="news-container">
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div id="movieContainer"
