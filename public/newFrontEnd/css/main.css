@@ -24566,3 +24566,16 @@ background-color:#e81123!important
     width: 100%;
     margin-right: 100px;
 }
+
+
+.recent-movie-text {
+text-align: center;
+letter-spacing: 0.05em;
+font-weight: 600;
+line-height: 1.75rem;
+text-decoration-line: underline;
+text-decoration-color: #1e293b;
+text-decoration-thickness: 4px;
+text-underline-offset: 8px;
+opacity: 0.8
+}

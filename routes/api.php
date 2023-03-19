@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/recentMoviesAndTvSeries', [ApiController::class, 'recentMoviesAndTvSeries'])->where('movieCount', '[0-9]+')->where('tvCount', '[0-9]+');
+Route::get('/recentMovie', [ApiController::class, 'recentMovie']);

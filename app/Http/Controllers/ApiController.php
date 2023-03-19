@@ -6,7 +6,6 @@ use App\Models\Product;
 use App\Models\Season;
 use App\Models\TvSeries;
 use Illuminate\Http\Request;
-
 use App\Models\SubCategory;
 
 class ApiController extends Controller
@@ -36,15 +35,15 @@ class ApiController extends Controller
 
         return $subCategory;
     }
-    public function recentMoviesAndTvSeries()
+
+    public function recentMovie()
     {
-        $movies = Product::orderBy('id', 'desc')->where('categoryId', 1)->get();
-        $tvSeries = TvSeries::orderBy('id', 'desc')->where('SubCategoryId', 10)->get();
+        $movies = Product::orderBy('id', 'desc')->where('categoryId', 1)->distinct()->paginate(12);
+
         return response()->json([
             "message" => "success",
             "status" => 200,
             'movies' => $movies,
-            'tvSeries' => $tvSeries
         ]);
     }
 }
