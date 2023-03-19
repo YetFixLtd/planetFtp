@@ -51,7 +51,7 @@
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div id="movieContainer"
-                        style="grid grid-template-columns:6; grid-template-rows:4;max-width:1798px; margin:auto;">
+                        style="grid grid-template-columns:6; grid-template-rows:4;max-width:1816px; margin:auto;">
 
                     </div>
                 </div>
