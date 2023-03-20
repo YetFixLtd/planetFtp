@@ -21,7 +21,7 @@
         <div class="news-container">
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
-                    <div class="content news-gallery">
+                    <div style="grid grid-template-columns:6; grid-template-rows:4;max-width:1816px; margin:auto;">
                         @foreach ($products as $product)
                             <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5" data-wow-duration="0.7s"
                                 data-wow-offset="0">
@@ -46,8 +46,8 @@
     </main>
 
 
-    <main style="margin-top:-65px;">
-        <div class="news-container">
+    <main style="margin-top:-70px;">
+        <div class="news-container ">
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div id="movieContainer"
@@ -61,8 +61,6 @@
 
     <script>
         let page = 3;
-        let currentNumber = 0;
-        let lastNumber = 0;
 
 
         window.addEventListener('scroll', () => {
@@ -91,9 +89,8 @@
                         movieElement.setAttribute('data-wow-duration', '0.7s');
                         movieElement.setAttribute('data-wow-offset', '0');
 
-                        movieElement.innerHTML = `
-                        <div class="post-wrapper">
-                            <a class="image" onclick="UpdateHits('23626','visit')" href="#"><img
+                        movieElement.innerHTML = `<div class="post-wrapper">
+                            <a class="image" onclick="UpdateHits('23626','visit')" href="${'movie/'+movie.id}"><img
                                     src="${movie.productFile}"
                                     alt="${movie.productTitle}"
                                     style="width: 100%; height: 100%;" /></a>
@@ -102,12 +99,11 @@
                                     ${movie.productTitle}
                                 </div>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                         const movieContainer = document.getElementById('movieContainer');
                         movieContainer.appendChild(movieElement);
 
-                    })
+                    });
                     page++;
 
                 }
