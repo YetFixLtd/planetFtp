@@ -14,7 +14,7 @@
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
                     <div class="content news-gallery">
-                        <div class="date-bar"></div>
+
                         @foreach ($productsData as $products)
                             <div class="post post-height hover-img-scale wow fadeInUp" data-rating="5" data-wow-duration="0.7s"
                                 data-wow-offset="0">
