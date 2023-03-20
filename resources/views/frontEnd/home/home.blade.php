@@ -43,11 +43,11 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
+
     </main>
-
-
-
 
     <script>
         let page = 3;
@@ -64,6 +64,7 @@
                 async function getNewMovies() {
                     const response = await fetch(`http://127.0.0.1:8000/api/recentMovie?page=${page}`);
                     const movieParameter = await response.json();
+
 
                     const {
                         movies: {
@@ -93,7 +94,10 @@
                         const movieContainer = document.getElementById('movieContainer');
                         movieContainer.appendChild(movieElement);
 
+
+
                     });
+
                     page++;
 
                 }
