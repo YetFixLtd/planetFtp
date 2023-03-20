@@ -62,7 +62,7 @@
 
             if (scrollTop + clientHeight >= scrollHeight) {
                 async function getNewMovies() {
-                    const response = await fetch(`http://127.0.0.1:8000/api/recentMovie?page=${page}`);
+                    const response = await fetch(`{{ route('recentMovie') }}?page=${page}`);
                     const movieParameter = await response.json();
 
 

@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/recentMovie', [ApiController::class, 'recentMovie']);
+Route::get('/recentMovie', [ApiController::class, 'recentMovie'])->name('recentMovie');
