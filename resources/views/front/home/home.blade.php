@@ -5,7 +5,7 @@
 @section('content')
 
 
-@include('front.includes.slider')
+
 
 
 

@@ -38,7 +38,7 @@ class ApiController extends Controller
 
     public function recentMovie()
     {
-        $movies = Product::orderBy('id', 'desc')->where('categoryId', 1)->where('publicationStatus', 1)->distinct()->paginate(12);
+        $movies = Product::orderBy('id', 'desc')->where('publicationStatus', 1)->get();
 
         return response()->json([
             "message" => "success",

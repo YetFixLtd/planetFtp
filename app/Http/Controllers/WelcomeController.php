@@ -20,11 +20,16 @@ class WelcomeController extends Controller
         $tv = Link::where('type', 'LiveTv')->first();
         $index = Link::where('type', 'Index')->first();
         $partner = Link::where('type', 'FTP-Partner')->get();
+        $items = DB::table('products')
+        ->where('publicationStatus', 1)
+        ->orderBy('id', 'desc')
+        ->get();
 
         return view('frontEnd.home.home', [
             'tv' => $tv,
             'index' => $index,
-            'partner' => $partner
+            'partner' => $partner,
+		'items' => $items
         ]);
     }
     public function searchResult(Request $request)
