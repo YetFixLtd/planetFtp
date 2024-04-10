@@ -9,7 +9,6 @@
         ->where('publicationStatus', 1)
         ->where('categoryId', 1)
         ->orderBy('id', 'desc')
-        ->limit(24)
         ->get();
 @endphp
 
@@ -49,7 +48,7 @@
 
     </main>
 
-    <script>
+    {{-- <script>
         let page = 3;
 
 
@@ -104,5 +103,5 @@
                 getNewMovies();
             }
         });
-    </script>
+    </script> --}}
 @endsection
