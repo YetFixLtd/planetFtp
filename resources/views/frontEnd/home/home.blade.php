@@ -4,7 +4,17 @@
     Home
 @endsection
 
+<<<<<<< HEAD
 
+=======
+@php
+    $products = DB::table('products')
+        ->where('publicationStatus', 1)
+        ->where('categoryId', 1)
+        ->orderBy('id', 'desc')
+        ->get();
+@endphp
+>>>>>>> 8545dfc61105234c42c06a4293d82930bdaa82f1
 
 @section('main-content')
     
@@ -41,4 +51,64 @@
         </div>
 
     </main>
+<<<<<<< HEAD
+=======
+
+    {{-- <script>
+        let page = 3;
+
+
+        window.addEventListener('scroll', () => {
+            const {
+                scrollTop,
+                scrollHeight,
+                clientHeight
+            } = document.documentElement;
+
+            if (scrollTop + clientHeight >= scrollHeight) {
+                async function getNewMovies() {
+                    const response = await fetch(`{{ route('recentMovie') }}?page=${page}`);
+                    const movieParameter = await response.json();
+
+
+                    const {
+                        movies: {
+                            data: newMovies
+                        }
+                    } = movieParameter;
+
+                    newMovies.map(movie => {
+                        const movieElement = document.createElement('div');
+                        movieElement.classList.add('post', 'post-height', 'hover-img-scale', 'wow',
+                            'fadeInUp', );
+                        movieElement.setAttribute('data-rating', '5');
+                        movieElement.setAttribute('data-wow-duration', '0.7s');
+                        movieElement.setAttribute('data-wow-offset', '0');
+
+                        movieElement.innerHTML = `<div class="post-wrapper">
+                            <a class="image" onclick="UpdateHits('23626','visit')" href="${'movie/'+movie.id}"><img
+                                    src="${movie.productFile}"
+                                    alt="${movie.productTitle}"
+                                    style="width: 100%; height: 100%;" /></a>
+                            <div class="block">
+                                <div class="title">
+                                    ${movie.productTitle}
+                                </div>
+                            </div>
+                        </div>`;
+                        const movieContainer = document.getElementById('movieContainer');
+                        movieContainer.appendChild(movieElement);
+
+
+
+                    });
+
+                    page++;
+
+                }
+                getNewMovies();
+            }
+        });
+    </script> --}}
+>>>>>>> 8545dfc61105234c42c06a4293d82930bdaa82f1
 @endsection
