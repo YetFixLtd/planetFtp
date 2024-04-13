@@ -15,8 +15,8 @@
 @section('main-content')
     
     <main>
-        <h3 class="recent-movie-text"> Recent
-            movies</h3>
+        <h3 class="recent-movie-text"> Recent 
+            movies is not scrolling</h3>
         <div class="news-container">
             <div class="tab-content news-content clearfix">
                 <div class="tab-pane active load-post-body" id="news-stories">
