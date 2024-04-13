@@ -4,9 +4,6 @@
     Home
 @endsection
 
-<<<<<<< HEAD
-
-=======
 @php
     $products = DB::table('products')
         ->where('publicationStatus', 1)
@@ -14,7 +11,6 @@
         ->orderBy('id', 'desc')
         ->get();
 @endphp
->>>>>>> 8545dfc61105234c42c06a4293d82930bdaa82f1
 
 @section('main-content')
     
@@ -51,8 +47,6 @@
         </div>
 
     </main>
-<<<<<<< HEAD
-=======
 
     {{-- <script>
         let page = 3;
@@ -110,5 +104,4 @@
             }
         });
     </script> --}}
->>>>>>> 8545dfc61105234c42c06a4293d82930bdaa82f1
 @endsection
