@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\WelcomeController;
 
+Route::get('/', function () {
+    dd('Welcome to Laravel');
+});
+
 Route::get('/', 'WelcomeController@index');
 Route::get('/subCatmovie/{id}', [
     'uses' => 'WelcomeController@subCatProductView',
