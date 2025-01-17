@@ -32,9 +32,9 @@ class WelcomeController extends Controller
             'items' => $items
         ]);
     }
-    public function searchResult(Request $request)
+    public function searchResult($text)
     {
-        $text = $request->input('text');
+        // $text = $request->input('text');
         // $products = DB::table('products')
         // ->fullJoin()
         //     ->Where('productTitle', 'like', '%' . $text . '%')

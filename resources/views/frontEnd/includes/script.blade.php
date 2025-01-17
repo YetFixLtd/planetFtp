@@ -39,38 +39,22 @@
     $(function() {
         // $('#txtSearch').on('keyup', function(){
 
-        let debounceTimer;
+        $('#txtSearch').keyup(function() {
 
-        $('#txtSearch').on('keyup', function() {
-            const text = $(this).val().trim();
+            var text = $('#txtSearch').val();
 
-            // Clear previous debounce timer
-            clearTimeout(debounceTimer);
-
-            // Debounce function execution
-            debounceTimer = setTimeout(function() {
-                if (text.length > 2) {
-                    $.ajax({
-                        type: "GET",
-                        url: '/newSearch/' + encodeURIComponent(
-                        text), // Append text to URL
-                        success: function(response) {
-                            if (response.success) {
-                                $('#result').html(response
-                                .html); // Render HTML from response
-                            }
-                        },
-                        error: function(xhr) {
-                            console.error(xhr
-                            .responseText); // Log errors for debugging
-                        },
-                    });
-                } else {
-                    $('#result').html(''); // Clear results for short inputs
+            $.ajax({
+                type: "GET",
+                url: '/search-results/' + encodeURIComponent(text),
+                data: {
+                    text: text
+                },
+                success: function(data) {
+                    //console.log(data);
+                    $('#result').html(data);
                 }
-            }, 300); // Delay search by 300ms
+            });
         });
-
     });
 
 
