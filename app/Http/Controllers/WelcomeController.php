@@ -107,73 +107,56 @@ class WelcomeController extends Controller
     public function newSearch(Request $request)
     {
         $text = $request->input('text');
-        // $products = DB::table('products')
-        // ->fullJoin()
-        //     ->Where('productTitle', 'like', '%' . $text . '%')
 
+        // Fetch movies data
         $movies = DB::table('products')
-            ->Where('productTitle', 'like', '%' . $text . '%')
+            ->where('productTitle', 'like', '%' . $text . '%')
             ->get();
 
-        //  dd($movies);
-
-        $list = array();
-        $i = 1;
-        foreach ($movies as $m) {
-            $list[$i]['type'] = 'movies';
-            $list[$i]['id'] = $m->id;
-            // $list[$i]['id'] = $m->id;
-            $list[$i]['text'] = $m->productTitle;
-            $list[$i]['image'] = $m->productFile;
-            $i++;
+        // Prepare movies list
+        $moviesList = [];
+        foreach ($movies as $movie) {
+            $moviesList[] = [
+                'type' => 'movies',
+                'id' => $movie->id,
+                'text' => $movie->productTitle,
+                'image' => $movie->productFile,
+            ];
         }
-        $tv  = DB::table('tv_series')
-            ->Where('tvSeriesTitle', 'like', '%' . $text . '%')
+
+        // Fetch TV series data
+        $tvSeries = DB::table('tv_series')
+            ->where('tvSeriesTitle', 'like', '%' . $text . '%')
             ->get();
-        $lists = array();
-        $i = 1;
-        foreach ($tv as $m) {
-            $lists[$i]['type'] = 'tv';
-            $lists[$i]['id'] = $m->id;
-            $lists[$i]['text'] = $m->tvSeriesTitle;
-            $lists[$i]['image'] = $m->tvSeriesFile;
-            $i++;
+
+        // Prepare TV series list
+        $tvList = [];
+        foreach ($tvSeries as $tv) {
+            $tvList[] = [
+                'type' => 'tv',
+                'id' => $tv->id,
+                'text' => $tv->tvSeriesTitle,
+                'image' => $tv->tvSeriesFile,
+            ];
         }
-        $products = array_merge($list, $lists);
 
-        //dd($products);
-        // return the results
+        // Combine results
+        $products = array_merge($moviesList, $tvList);
 
-        // $output = '';
-        // foreach ($products as  $product) {
-        //     $output .= '
-        //          <ul>
-        //          <li style="padding:10px">
-        //          <a href="' . url('movie/' . $product->id) . '">' . $product->productTitle . '</a>
-        //          </li>
-        //          </ul>
-        //          ';
-        // }
-        // echo  $output;
-        // <img src="' . url($product['image']) . '" style="height: 116px; width: 113px;">
-        // <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '"> ' . $product['text'] . '</a>
-        //  dd($products);
+        // Generate HTML output
         $output = '';
-        foreach ($products as  $product) {
-
+        foreach ($products as $product) {
             $output .= '
-
-                <li  class="list-group-item shadow" style=" background:#fecaca; opacity:0.95; ">
-                   <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '" >
-                      <img src="' . url($product['image']) . '" style="height: 200px; width: 100%;" class="rounded">
-                      <p style="font-size:20px; letter-spacing:1.2px; font-weight:bold;"> ' . $product['text'] . '</p>
-                   </a>
-
-                </li>
-
-                 ';
+                <li class="list-group-item shadow" style="background:#fecaca; opacity:0.95;">
+                    <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '">
+                        <img src="' . url($product['image']) . '" style="height: 200px; width: 100%;" class="rounded">
+                        <p style="font-size:20px; letter-spacing:1.2px; font-weight:bold;">' . $product['text'] . '</p>
+                    </a>
+                </li>';
         }
-        echo  $output;
+
+        // Return the HTML output
+        return response($output);
     }
 
 

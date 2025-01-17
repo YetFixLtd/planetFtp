@@ -39,21 +39,39 @@
     $(function() {
         // $('#txtSearch').on('keyup', function(){
 
-        $('#txtSearch').keyup(function() {
+        let debounceTimer; // Timer for debounce
 
-            var text = $('#txtSearch').val();
+        $('#txtSearch').on('keyup', function() {
+            const text = $(this).val().trim();
 
-            $.ajax({
-                type: "GET",
-                url: '/newSearch',
-                data: {
-                    text: text
-                },
-                success: function(data) {
-                    //console.log(data);
-                    $('#result').html(data);
+            // Clear previous debounce timer
+            clearTimeout(debounceTimer);
+
+            // Debounce function execution
+            debounceTimer = setTimeout(function() {
+                if (text.length > 2) { // Trigger search after 3+ characters
+                    $.ajax({
+                        type: "POST", // Use POST for better security
+                        url: '/newSearch',
+                        data: {
+                            text: text,
+
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                $('#result').html(response
+                                    .html); // Render HTML from response
+                            }
+                        },
+                        error: function(xhr) {
+                            console.error(xhr
+                                .responseText); // Log errors for debugging
+                        },
+                    });
+                } else {
+                    $('#result').html(''); // Clear results for short inputs
                 }
-            });
+            }, 300); // Delay search by 300ms
         });
     });
 
