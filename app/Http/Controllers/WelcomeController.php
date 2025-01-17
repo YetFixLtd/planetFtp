@@ -104,7 +104,7 @@ class WelcomeController extends Controller
         echo  $output;
     }
 
-    public function newSearch($test)
+    public function newSearch($text)
     {
 
         // $text = $request->input('text');
