@@ -51,7 +51,7 @@ Route::get('/fetch-sub-category-by-category-id/{category_id}', 'ApiController@fe
 Route::get('/movie-episode/{id}/{type}', 'WelcomeController@movieEpisode');
 Route::get('/others/{id}', 'WelcomeController@others_details');
 Route::get('/search-results', 'WelcomeController@searchResult');
-Route::get('/newSearch', [WelcomeController::class, 'newSearch'])->name('newSearch');
+Route::get('/newSearch/{test}', [WelcomeController::class, 'newSearch'])->name('newSearch');
 
 
 // Route::get('/product-details/{id}', 'WelcomeController@product_details');

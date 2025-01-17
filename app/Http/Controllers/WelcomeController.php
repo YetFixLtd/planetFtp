@@ -104,9 +104,10 @@ class WelcomeController extends Controller
         echo  $output;
     }
 
-    public function newSearch(Request $request)
+    public function newSearch($test)
     {
-        $text = $request->input('text');
+
+        // $text = $request->input('text');
 
         // Fetch movies data
         $movies = DB::table('products')

@@ -39,7 +39,7 @@
     $(function() {
         // $('#txtSearch').on('keyup', function(){
 
-        let debounceTimer; // Timer for debounce
+        let debounceTimer;
 
         $('#txtSearch').on('keyup', function() {
             const text = $(this).val().trim();
@@ -49,23 +49,20 @@
 
             // Debounce function execution
             debounceTimer = setTimeout(function() {
-                if (text.length > 2) { // Trigger search after 3+ characters
+                if (text.length > 2) {
                     $.ajax({
-                        type: "Get", // Use POST for better security
-                        url: '/newSearch',
-                        data: {
-                            text: text,
-
-                        },
+                        type: "GET",
+                        url: '/newSearch/' + encodeURIComponent(
+                        text), // Append text to URL
                         success: function(response) {
                             if (response.success) {
                                 $('#result').html(response
-                                    .html); // Render HTML from response
+                                .html); // Render HTML from response
                             }
                         },
                         error: function(xhr) {
                             console.error(xhr
-                                .responseText); // Log errors for debugging
+                            .responseText); // Log errors for debugging
                         },
                     });
                 } else {
@@ -73,6 +70,7 @@
                 }
             }, 300); // Delay search by 300ms
         });
+
     });
 
 
