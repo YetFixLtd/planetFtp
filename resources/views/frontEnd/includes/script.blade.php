@@ -51,7 +51,7 @@
             debounceTimer = setTimeout(function() {
                 if (text.length > 2) { // Trigger search after 3+ characters
                     $.ajax({
-                        type: "POST", // Use POST for better security
+                        type: "Get", // Use POST for better security
                         url: '/newSearch',
                         data: {
                             text: text,
