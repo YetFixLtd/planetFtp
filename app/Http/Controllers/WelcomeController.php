@@ -21,15 +21,15 @@ class WelcomeController extends Controller
         $index = Link::where('type', 'Index')->first();
         $partner = Link::where('type', 'FTP-Partner')->get();
         $items = DB::table('products')
-        ->where('publicationStatus', 1)
-        ->orderBy('id', 'desc')
-        ->get();
+            ->where('publicationStatus', 1)
+            ->orderBy('id', 'desc')
+            ->get();
 
         return view('frontEnd.home.home', [
             'tv' => $tv,
             'index' => $index,
             'partner' => $partner,
-		'items' => $items
+            'items' => $items
         ]);
     }
     public function searchResult(Request $request)
@@ -103,6 +103,79 @@ class WelcomeController extends Controller
         }
         echo  $output;
     }
+
+    public function newSearch(Request $request)
+    {
+        $text = $request->input('text');
+        // $products = DB::table('products')
+        // ->fullJoin()
+        //     ->Where('productTitle', 'like', '%' . $text . '%')
+
+        $movies = DB::table('products')
+            ->Where('productTitle', 'like', '%' . $text . '%')
+            ->get();
+
+        //  dd($movies);
+
+        $list = array();
+        $i = 1;
+        foreach ($movies as $m) {
+            $list[$i]['type'] = 'movies';
+            $list[$i]['id'] = $m->id;
+            // $list[$i]['id'] = $m->id;
+            $list[$i]['text'] = $m->productTitle;
+            $list[$i]['image'] = $m->productFile;
+            $i++;
+        }
+        $tv  = DB::table('tv_series')
+            ->Where('tvSeriesTitle', 'like', '%' . $text . '%')
+            ->get();
+        $lists = array();
+        $i = 1;
+        foreach ($tv as $m) {
+            $lists[$i]['type'] = 'tv';
+            $lists[$i]['id'] = $m->id;
+            $lists[$i]['text'] = $m->tvSeriesTitle;
+            $lists[$i]['image'] = $m->tvSeriesFile;
+            $i++;
+        }
+        $products = array_merge($list, $lists);
+
+        //dd($products);
+        // return the results
+
+        // $output = '';
+        // foreach ($products as  $product) {
+        //     $output .= '
+        //          <ul>
+        //          <li style="padding:10px">
+        //          <a href="' . url('movie/' . $product->id) . '">' . $product->productTitle . '</a>
+        //          </li>
+        //          </ul>
+        //          ';
+        // }
+        // echo  $output;
+        // <img src="' . url($product['image']) . '" style="height: 116px; width: 113px;">
+        // <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '"> ' . $product['text'] . '</a>
+        //  dd($products);
+        $output = '';
+        foreach ($products as  $product) {
+
+            $output .= '
+
+                <li  class="list-group-item shadow" style=" background:#fecaca; opacity:0.95; ">
+                   <a href="' . url('movie-episode/' . $product['id'] . '/' . $product['type']) . '" >
+                      <img src="' . url($product['image']) . '" style="height: 200px; width: 100%;" class="rounded">
+                      <p style="font-size:20px; letter-spacing:1.2px; font-weight:bold;"> ' . $product['text'] . '</p>
+                   </a>
+
+                </li>
+
+                 ';
+        }
+        echo  $output;
+    }
+
 
     public function movieEpisode($id, $type)
     {

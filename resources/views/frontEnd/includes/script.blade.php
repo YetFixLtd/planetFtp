@@ -45,7 +45,7 @@
 
             $.ajax({
                 type: "GET",
-                url: '/search-results',
+                url: '/newSearch',
                 data: {
                     text: text
                 },
